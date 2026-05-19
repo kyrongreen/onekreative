@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Zip/archives
+*.zip
+
+# Office temp files
+~$*
