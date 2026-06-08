@@ -3,27 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CO-OP EDDM Mailer | One Kreative</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <title>OneKreative — Design. Develop. Innovate.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream: #faf7f2;
-      --warm: #f2ede4;
-      --dark: #1a1410;
-      --accent: #c4933f;
-      --accent-light: #e8d5b0;
-      --muted: #7a6f62;
-      --white: #ffffff;
+      --blue:    #0A3D2B;
+      --blue-lt: #0D5038;
+      --coral:   #FF4B3E;
+      --yellow:  #CCFF00;
+      --lime:    #CCFF00;
+      --purple:  #005F4B;
+      --ink:     #0A0A08;
+      --ink-mid: #1C1C1A;
+      --muted:   #6B6B65;
+      --border:  #E2DFD6;
+      --bg:      #F5F3ED;
+      --white:   #FFFEFB;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--cream);
-      color: var(--dark);
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
@@ -31,1965 +40,1914 @@
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 200;
+      background: rgba(245,243,237,0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1.5px solid var(--border);
+      height: 66px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 48px;
-      background: rgba(250,247,242,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(196,147,63,0.15);
+      padding: 0 40px;
     }
 
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--dark);
-      letter-spacing: 0.02em;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.5px;
     }
-
-    .nav-logo span {
-      color: var(--accent);
-    }
+    .nav-logo span { color: var(--blue); font-style: italic; }
 
     .nav-links {
-      display: flex;
-      gap: 36px;
       list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--accent); }
-
-    .nav-cta {
-      background: var(--dark);
-      color: var(--white) !important;
-      padding: 10px 24px;
-      border-radius: 2px;
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.2s !important;
-    }
-
-    .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
-
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 120px 48px 80px;
-      position: relative;
-      overflow: hidden;
+      gap: 32px;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-btn {
+      background: var(--ink) !important;
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-weight: 700 !important;
+      font-size: 0.82rem !important;
+      transition: background 0.15s, transform 0.15s !important;
+      letter-spacing: 0.2px;
+    }
+    .nav-btn:hover {
+      background: var(--blue) !important;
+      color: var(--yellow) !important;
+      transform: scale(1.04);
     }
 
-    .hero::before {
-      content: '';
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      padding: 130px 40px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-bg-shape {
       position: absolute;
-      top: -200px; right: -200px;
-      width: 700px; height: 700px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(196,147,63,0.08) 0%, transparent 70%);
+      filter: blur(80px);
       pointer-events: none;
+      z-index: 0;
+    }
+    .hero-bg-1 {
+      width: 500px; height: 500px;
+      background: rgba(10,61,43,0.07);
+      top: -100px; right: -100px;
+    }
+    .hero-bg-2 {
+      width: 400px; height: 400px;
+      background: rgba(204,255,0,0.09);
+      bottom: 0; left: 200px;
+    }
+    .hero-bg-3 {
+      width: 300px; height: 300px;
+      background: rgba(255,75,62,0.07);
+      top: 40%; right: 30%;
     }
 
     .hero-inner {
-      max-width: 1200px;
+      position: relative;
+      z-index: 2;
+      max-width: 1120px;
       margin: 0 auto;
       width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
       align-items: center;
-    }
-
-    .hero-text .eyebrow {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-
-    .hero-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
-      line-height: 1.1;
+      gap: 10px;
+      font-size: 0.78rem;
       font-weight: 700;
-      color: var(--dark);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
       margin-bottom: 28px;
     }
-
-    .hero-text h1 em {
-      font-style: italic;
-      color: var(--accent);
+    .hero-eyebrow .badge {
+      background: var(--blue);
+      color: var(--lime);
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 0.68rem;
+      letter-spacing: 1.5px;
     }
 
-    .hero-text p {
+    .hero-title {
+      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -3px;
+      color: var(--ink);
+      margin-bottom: 36px;
+    }
+
+    .hero-title .line-accent { color: var(--blue); }
+
+    .hero-title .outlined {
+      -webkit-text-stroke: 3px var(--blue);
+      color: transparent;
+    }
+
+    .hero-title .highlighted {
+      position: relative;
+      display: inline-block;
+    }
+    .hero-title .highlighted::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 0; right: 0;
+      height: 16px;
+      background: var(--yellow);
+      z-index: -1;
+      border-radius: 2px;
+    }
+
+    .hero-sub-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 48px;
+      max-width: 900px;
+    }
+
+    .hero-desc {
       font-size: 1.1rem;
-      line-height: 1.8;
       color: var(--muted);
-      margin-bottom: 40px;
-      max-width: 480px;
+      line-height: 1.7;
+      max-width: 420px;
     }
 
     .hero-actions {
       display: flex;
-      gap: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background: var(--dark);
-      color: var(--white);
-      padding: 16px 36px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
-
-    button.btn-primary, button.btn-trigger {
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .btn-secondary {
-      display: inline-block;
-      color: var(--dark);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
-      border-bottom: 1.5px solid var(--accent);
-      padding-bottom: 2px;
-      transition: color 0.2s;
-    }
-
-    .btn-secondary:hover { color: var(--accent); }
-
-    /* ─── POSTCARD VISUAL ─── */
-    .hero-visual {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 560px;
-    }
-
-    /* Hand SVG + Postcard */
-    .postcard-scene {
-      position: relative;
-      width: 380px;
-      height: 500px;
-    }
-
-    .postcard {
-      position: absolute;
-      top: 40px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-4deg);
-      width: 320px;
-      height: 213px; /* 9x12 ratio */
-      background: var(--white);
-      border-radius: 6px;
-      box-shadow: 0 24px 60px rgba(26,20,16,0.18), 0 8px 24px rgba(26,20,16,0.08);
-      overflow: hidden;
-      z-index: 3;
-    }
-
-    .postcard-inner {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #1a1410 0%, #2d2318 40%, #3d2f1e 100%);
-      display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      position: relative;
+      gap: 12px;
+      align-items: flex-end;
+      flex-shrink: 0;
     }
 
-    .postcard-inner::before {
-      content: '';
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.18s;
+    }
+    .btn-solid {
+      background: var(--ink);
+      color: var(--white);
+      padding: 15px 32px;
+      border-radius: 100px;
+    }
+    .btn-solid:hover {
+      background: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(10,61,43,0.3);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      padding: 14px 32px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--ink);
+      transform: translateY(-2px);
+    }
+    .btn-blue {
+      background: var(--blue);
+      color: var(--yellow);
+      padding: 15px 32px;
+      border-radius: 100px;
+    }
+    .btn-blue:hover {
+      background: var(--blue-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(10,61,43,0.3);
+    }
+    .btn-coral {
+      background: var(--coral);
+      color: var(--white);
+      padding: 15px 32px;
+      border-radius: 100px;
+    }
+    .btn-coral:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255,58,92,0.35);
+    }
+
+    .hero-scroll-hint {
       position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(196,147,63,0.4);
-      border-radius: 2px;
+      bottom: 36px;
+      left: 40px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-scroll-hint::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1.5px;
+      background: var(--muted);
     }
 
-    .postcard-logo {
-      font-family: 'Playfair Display', serif;
+    /* ─── MARQUEE ─── */
+    .marquee-strip {
+      overflow: hidden;
+      background: var(--blue);
+      padding: 16px 0;
+      border-top: 1.5px solid var(--blue);
+      border-bottom: 1.5px solid var(--blue);
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 24s linear infinite;
+      gap: 0;
+    }
+    .marquee-item {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 28px;
       font-size: 0.85rem;
       font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .postcard-tagline {
-      font-size: 0.6rem;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    .postcard-headline {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--white);
-      text-align: center;
-      line-height: 1.3;
-      margin: 10px 0 6px;
-    }
-
-    .postcard-size-badge {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      font-size: 0.5rem;
-      color: rgba(196,147,63,0.6);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    /* Hand illustration */
-    .hand-svg {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 4;
-      width: 260px;
-    }
-
-    /* ─── FLOATING REVIEWS ─── */
-    .review-float {
-      position: absolute;
-      background: var(--white);
-      border-radius: 12px;
-      padding: 14px 18px;
-      box-shadow: 0 8px 32px rgba(26,20,16,0.10);
-      max-width: 200px;
-      z-index: 10;
-    }
-
-    .review-float .stars {
-      color: var(--accent);
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      margin-bottom: 6px;
-    }
-
-    .review-float p {
-      font-size: 0.72rem;
-      line-height: 1.6;
-      color: var(--dark);
-      margin-bottom: 8px;
-    }
-
-    .review-float .reviewer {
-      font-size: 0.65rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .review-1 {
-      top: 10px;
-      left: -60px;
-      transform: rotate(-2deg);
-      animation: float1 6s ease-in-out infinite;
-    }
-
-    .review-2 {
-      top: 20px;
-      right: -70px;
-      transform: rotate(3deg);
-      animation: float2 7s ease-in-out infinite;
-    }
-
-    .review-3 {
-      bottom: 120px;
-      left: -80px;
-      transform: rotate(1deg);
-      animation: float1 8s ease-in-out infinite;
-    }
-
-    .review-4 {
-      bottom: 100px;
-      right: -60px;
-      transform: rotate(-2deg);
-      animation: float2 5s ease-in-out infinite;
-    }
-
-    @keyframes float1 {
-      0%, 100% { transform: rotate(-2deg) translateY(0); }
-      50% { transform: rotate(-2deg) translateY(-8px); }
-    }
-
-    @keyframes float2 {
-      0%, 100% { transform: rotate(3deg) translateY(0); }
-      50% { transform: rotate(3deg) translateY(-10px); }
-    }
-
-    /* ─── EXCLUSIVITY BADGE ─── */
-    .excl-banner {
-      background: var(--accent);
-      padding: 14px 48px;
-      text-align: center;
-    }
-
-    .excl-banner p {
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--white);
     }
-
-    .excl-banner p span {
-      opacity: 0.75;
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: 0;
+    .marquee-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
 
-    .excl-banner .sides-note {
-      font-size: 0.72rem;
-      opacity: 0.8;
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: 0;
-      margin-top: 4px;
-      display: block;
-    }
-
-    /* ─── STATS BAR ─── */
-    .stats-bar {
-      background: var(--dark);
-      padding: 40px 48px;
-    }
-
-    .stats-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-      text-align: center;
-    }
-
-    .stat-item .number {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .stat-item .label {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    /* ─── HOW IT WORKS ─── */
-    .section {
-      padding: 100px 48px;
-    }
-
-    .section-inner {
-      max-width: 1200px;
+    /* ─── ABOUT ─── */
+    #about {
+      padding: 120px 40px;
+      max-width: 1120px;
       margin: 0 auto;
     }
 
-    .section-eyebrow {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--dark);
-      margin-bottom: 20px;
-    }
-
-    .section-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 560px;
-      margin-bottom: 64px;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-    }
-
-    .step-card {
-      position: relative;
-    }
-
-    .step-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      font-weight: 700;
-      color: var(--accent-light);
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-
-    .step-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 12px;
-    }
-
-    .step-card p {
-      font-size: 0.92rem;
-      line-height: 1.8;
-      color: var(--muted);
-    }
-
-    /* ─── WHY EDDM ─── */
-    .why-section {
-      background: var(--warm);
-      padding: 100px 48px;
-    }
-
-    .why-grid {
+    .about-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: center;
     }
 
-    .why-text .section-sub {
-      margin-bottom: 40px;
-    }
-
-    .feature-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .feature-list li {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .feature-icon {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-      background: var(--dark);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 0.85rem;
-      margin-top: 2px;
-    }
-
-    .feature-list h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 4px;
-    }
-
-    .feature-list p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .why-visual {
-      position: relative;
-    }
-
-    .postcard-stack {
-      position: relative;
-      height: 400px;
-    }
-
-    .stack-card {
-      position: absolute;
-      width: 280px;
-      height: 186px;
-      border-radius: 6px;
-      box-shadow: 0 16px 40px rgba(26,20,16,0.12);
-    }
-
-    .stack-card-1 {
-      background: linear-gradient(135deg, #1a1410, #3d2f1e);
-      top: 20px;
-      left: 60px;
-      transform: rotate(-6deg);
-    }
-
-    .stack-card-2 {
-      background: linear-gradient(135deg, #2d1810, #5a2e18);
-      top: 60px;
-      left: 100px;
-      transform: rotate(2deg);
-    }
-
-    .stack-card-3 {
-      background: linear-gradient(135deg, #0f1a20, #1a3040);
-      top: 120px;
-      left: 40px;
-      transform: rotate(-2deg);
-    }
-
-    .stack-card-inner {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      position: relative;
-    }
-
-    .stack-card-inner::before {
-      content: '';
-      position: absolute;
-      inset: 7px;
-      border: 1px solid rgba(196,147,63,0.35);
-      border-radius: 2px;
-    }
-
-    .stack-card-inner .card-biz {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.75rem;
+    .about-left .tag {
+      font-size: 0.72rem;
       font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.06em;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .stack-card-inner .card-msg {
-      font-size: 0.55rem;
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-    }
-
-    /* ─── PRICING ─── */
-    .pricing-section {
-      padding: 100px 48px;
-    }
-
-    .pricing-header {
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 64px;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .pricing-card {
-      background: var(--white);
-      border: 1px solid rgba(196,147,63,0.15);
-      border-radius: 8px;
-      padding: 40px 32px;
-      position: relative;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 48px rgba(26,20,16,0.1);
-    }
-
-    .pricing-card.featured {
-      background: var(--dark);
-      border-color: var(--accent);
-    }
-
-    .popular-badge {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent);
-      color: var(--white);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 5px 16px;
-      border-radius: 20px;
-    }
-
-    .pricing-card .plan-name {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .pricing-card .price {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1;
-    }
-
-    .pricing-card.featured .price { color: var(--white); }
-
-    .pricing-card .price span {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--muted);
-    }
-
-    .pricing-card.featured .price span { color: rgba(255,255,255,0.5); }
-
-    .pricing-card .price-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin: 8px 0 28px;
-    }
-
-    .pricing-card.featured .price-note { color: rgba(255,255,255,0.5); }
-
-    .pricing-divider {
-      height: 1px;
-      background: rgba(196,147,63,0.15);
-      margin-bottom: 24px;
-    }
-
-    .pricing-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 36px;
-    }
-
-    .pricing-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.7); }
-
-    .pricing-features li::before {
-      content: '✓';
-      color: var(--accent);
-      font-weight: 700;
-      min-width: 14px;
-      margin-top: 1px;
-    }
-
-    .pricing-card .btn-primary {
-      width: 100%;
-      text-align: center;
-    }
-
-    .pricing-card:not(.featured) .btn-primary {
-      background: transparent;
-      color: var(--dark);
-      border: 1.5px solid var(--dark);
-    }
-
-    .pricing-card:not(.featured) .btn-primary:hover {
-      background: var(--dark);
-      color: var(--white);
-    }
-
-    /* ─── CARD LAYOUT SECTION ─── */
-    .layout-section {
-      padding: 100px 48px;
-    }
-    .layout-header {
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 64px;
-    }
-    .layout-sides {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      max-width: 1100px;
-      margin: 0 auto;
-      align-items: start;
-    }
-    .layout-side-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
+      color: var(--blue);
       margin-bottom: 14px;
-      text-align: center;
-    }
-    .mailer-card {
-      background: var(--white);
-      border-radius: 8px;
-      box-shadow: 0 16px 48px rgba(26,20,16,0.12);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .mailer-row {
-      display: flex;
-      gap: 3px;
-    }
-    .mailer-gap { height: 3px; background: var(--cream); flex-shrink: 0; }
-    .ad-slot {
-      flex: 1;
-      min-height: 90px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 6px;
-      background: linear-gradient(135deg, #1a1410 0%, #2d2318 100%);
-      position: relative;
-      text-align: center;
-      transition: filter 0.2s;
-      cursor: default;
-    }
-    .ad-slot:hover { filter: brightness(1.2); }
-    .ad-slot::before {
-      content: '';
-      position: absolute;
-      inset: 5px;
-      border: 1px solid rgba(196,147,63,0.35);
-      border-radius: 2px;
-      pointer-events: none;
-    }
-    .ad-slot .slot-label {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.58rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 3px;
-    }
-    .ad-slot .slot-size { font-size: 0.48rem; color: rgba(255,255,255,0.4); }
-    .ad-slot .slot-price { font-size: 0.58rem; font-weight: 700; color: rgba(255,255,255,0.85); margin-top: 4px; }
-    .slot-sm  { flex: 2.75; }
-    .slot-md  { flex: 5.68; }
-    .slot-lg  { flex: 8.59; }
-    .ok-strip {
-      height: 26px;
-      background: var(--dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .ok-strip span {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.52rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .indicia-box {
-      flex: 8.59;
-      min-height: 90px;
-      background: #f0ece4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border: 1.5px dashed rgba(196,147,63,0.4);
-      margin: 3px;
-      border-radius: 3px;
-      text-align: center;
-      padding: 6px;
-    }
-    .indicia-box .ind-label { font-size: 0.5rem; font-weight: 700; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
-    .indicia-box .ind-sub { font-size: 0.42rem; color: rgba(122,111,98,0.6); margin-top: 3px; }
-    .layout-legend {
-      display: flex;
-      justify-content: center;
-      gap: 28px;
-      margin-top: 36px;
-      flex-wrap: wrap;
-    }
-    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--muted); }
-    .legend-dot { width: 14px; height: 14px; border-radius: 3px; }
-    .legend-dot.ad  { background: linear-gradient(135deg,#1a1410,#2d2318); border: 1px solid rgba(196,147,63,0.5); }
-    .legend-dot.ok  { background: var(--dark); border: 1px solid var(--accent); }
-    .legend-dot.ind { background: #f0ece4; border: 1.5px dashed rgba(196,147,63,0.5); }
-    @media (max-width: 900px) {
-      .layout-sides { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-      .layout-section { padding: 70px 24px; }
     }
 
-    /* ─── LAYOUT / PRICING TABS ─── */
-    .layout-tabs, .pricing-tabs {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-bottom: 48px;
+    .about-left h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 20px;
     }
-    .layout-tab, .pricing-tab {
-      background: none;
-      border: 1.5px solid rgba(196,147,63,0.3);
+
+    .about-left p {
+      font-size: 1rem;
       color: var(--muted);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 10px 28px;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .layout-tab:hover, .pricing-tab:hover {
-      border-color: var(--accent);
-      color: var(--dark);
-    }
-    .layout-tab.active, .pricing-tab.active {
-      background: var(--dark);
-      border-color: var(--dark);
-      color: var(--white);
-    }
-
-    /* ─── COMMUNITY MAILER ─── */
-    .community-mailer-card {
-      background: #f5f0e8;
-      border-radius: 6px;
-      padding: 10px;
-      border: 1px solid rgba(196,147,63,0.25);
-      box-shadow: 0 8px 32px rgba(26,20,16,0.10);
-    }
-    .community-row {
-      display: flex;
-      gap: 6px;
-    }
-    .community-gap { height: 6px; }
-    .bc-slot {
-      flex: 1;
-      aspect-ratio: 2.75 / 3.5;
-      background: linear-gradient(135deg, #1a1410 0%, #2d2318 50%, #3d2f1e 100%);
-      border-radius: 3px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      text-align: center;
-      cursor: default;
-      transition: filter 0.2s;
-      padding: 5px;
-      overflow: hidden;
-    }
-    .bc-slot:hover { filter: brightness(1.2); }
-    .bc-slot::before {
-      content: '';
-      position: absolute;
-      inset: 4px;
-      border: 1px solid rgba(196,147,63,0.35);
-      border-radius: 2px;
-      pointer-events: none;
-    }
-    .bc-slot .slot-label {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.5rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 2px;
-      position: relative;
-      z-index: 1;
-    }
-    .bc-slot .slot-size { font-size: 0.4rem; color: rgba(255,255,255,0.4); position: relative; z-index: 1; }
-    .bc-slot .slot-price { font-size: 0.48rem; font-weight: 700; color: rgba(255,255,255,0.8); margin-top: 3px; position: relative; z-index: 1; }
-    .bc-slot.indicia-slot {
-      background: #f0ece4;
-    }
-    .bc-slot.indicia-slot::before { border-color: rgba(196,147,63,0.4); border-style: dashed; }
-    .bc-slot.indicia-slot .slot-label { color: var(--muted); }
-    .bc-slot.indicia-slot .slot-size { color: rgba(122,111,98,0.55); }
-
-    /* ─── REVIEWS SECTION ─── */
-    .reviews-section {
-      background: var(--warm);
-      padding: 100px 48px;
-    }
-
-    .reviews-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .review-card {
-      background: var(--white);
-      border-radius: 10px;
-      padding: 32px;
-      box-shadow: 0 4px 20px rgba(26,20,16,0.06);
-    }
-
-    .review-card .stars {
-      color: var(--accent);
-      font-size: 0.85rem;
-      letter-spacing: 3px;
+      line-height: 1.8;
       margin-bottom: 16px;
     }
 
-    .review-card blockquote {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.98rem;
-      font-style: italic;
-      line-height: 1.8;
-      color: var(--dark);
-      margin-bottom: 20px;
-    }
+    .about-left p:last-of-type { margin-bottom: 32px; }
 
-    .review-card .reviewer-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .reviewer-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--accent);
-    }
-
-    .reviewer-name {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--dark);
-    }
-
-    .reviewer-biz {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    /* ─── CTA BANNER ─── */
-    .cta-section {
-      padding: 100px 48px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px; height: 800px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(196,147,63,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .cta-inner {
-      max-width: 680px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .cta-inner h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--dark);
-      margin-bottom: 20px;
-    }
-
-    .cta-inner h2 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .cta-inner p {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 40px;
-    }
-
-    .cta-actions {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--dark);
-      padding: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .footer-logo span { color: var(--accent); }
-
-    footer p {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.35);
-    }
-
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.8rem;
-    }
-
-    footer a:hover { text-decoration: underline; }
-
-    /* ─── RESERVE MODAL ─── */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(26,20,16,0.6);
-      backdrop-filter: blur(4px);
-      z-index: 500;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .modal-overlay.open { display: flex; }
-
-    .modal-box {
-      background: var(--white);
-      border-radius: 4px;
-      padding: 48px 44px 44px;
-      max-width: 520px;
-      width: 100%;
-      position: relative;
-      box-shadow: 0 24px 64px rgba(26,20,16,0.18);
-      animation: modalIn 0.22s ease;
-    }
-    @keyframes modalIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 16px; right: 20px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--muted);
-      cursor: pointer;
-      line-height: 1;
-      padding: 4px;
-    }
-    .modal-close:hover { color: var(--dark); }
-
-    .modal-eyebrow {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-    .modal-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 6px;
-    }
-    .modal-sub {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-
-    .form-row {
+    .about-right {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
-    .form-group {
+
+    .about-stat-card {
+      border-radius: 16px;
+      padding: 28px 24px;
       display: flex;
       flex-direction: column;
-      margin-bottom: 14px;
+      gap: 6px;
     }
-    .form-group label {
-      font-size: 0.75rem;
+
+    .about-stat-card:nth-child(1) { background: var(--blue); }
+    .about-stat-card:nth-child(2) { background: var(--lime); }
+    .about-stat-card:nth-child(3) { background: var(--coral); }
+    .about-stat-card:nth-child(4) { background: var(--ink); }
+
+    .stat-num {
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+    .about-stat-card:nth-child(1) .stat-num { color: var(--lime); }
+    .about-stat-card:nth-child(2) .stat-num { color: var(--ink); }
+    .about-stat-card:nth-child(3) .stat-num { color: var(--white); }
+    .about-stat-card:nth-child(4) .stat-num { color: var(--lime); }
+
+    .stat-label {
+      font-size: 0.8rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.3px;
+    }
+    .about-stat-card:nth-child(1) .stat-label { color: rgba(204,255,0,0.65); }
+    .about-stat-card:nth-child(2) .stat-label { color: rgba(0,0,0,0.55); }
+    .about-stat-card:nth-child(3) .stat-label { color: rgba(255,255,255,0.7); }
+    .about-stat-card:nth-child(4) .stat-label { color: rgba(204,255,0,0.5); }
+
+    /* ─── SERVICES ─── */
+    #services {
+      background: var(--bg);
+      padding: 100px 40px;
+      border-top: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .services-inner { max-width: 1120px; margin: 0 auto; }
+
+    .services-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+      gap: 32px;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: var(--dark);
-      margin-bottom: 6px;
-    }
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      border: 1.5px solid rgba(196,147,63,0.3);
-      border-radius: 2px;
-      padding: 11px 14px;
-      font-size: 0.9rem;
-      font-family: 'Inter', sans-serif;
-      color: var(--dark);
-      background: var(--cream);
-      outline: none;
-      transition: border-color 0.2s;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-    .form-group input:focus,
-    .form-group select:focus { border-color: var(--accent); }
-
-    .select-wrap { position: relative; }
-    .select-wrap::after {
-      content: '▾';
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--accent);
-      pointer-events: none;
-      font-size: 0.85rem;
+      color: var(--blue);
+      margin-bottom: 12px;
     }
 
-    .modal-submit {
-      width: 100%;
-      background: var(--dark);
-      color: var(--white);
-      border: none;
-      padding: 15px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      border-radius: 2px;
-      cursor: pointer;
-      margin-top: 8px;
-      transition: background 0.2s;
+    .section-hed {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      color: var(--ink);
     }
-    .modal-submit:hover { background: var(--accent); }
 
-    .modal-success {
-      display: none;
-      text-align: center;
-      padding: 20px 0 10px;
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
-    .modal-success .check-icon {
-      font-size: 3rem;
-      margin-bottom: 16px;
+
+    .svc-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
     }
-    .modal-success h3 {
-      font-family: 'Playfair Display', serif;
+    .svc-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.1);
+      border-color: transparent;
+    }
+    .svc-card.blue:hover  { box-shadow: 0 24px 60px rgba(10,61,43,0.18); }
+    .svc-card.coral:hover { box-shadow: 0 24px 60px rgba(255,75,62,0.2); }
+    .svc-card.purple:hover { box-shadow: 0 24px 60px rgba(204,255,0,0.25); }
+
+    .svc-icon-wrap {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.5rem;
-      color: var(--dark);
-      margin-bottom: 10px;
     }
-    .modal-success p {
+    .blue  .svc-icon-wrap { background: rgba(10,61,43,0.08); }
+    .coral .svc-icon-wrap { background: rgba(255,75,62,0.08); }
+    .purple .svc-icon-wrap { background: rgba(204,255,0,0.12); }
+
+    .svc-num {
+      position: absolute;
+      top: 32px; right: 32px;
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      opacity: 0.05;
+      color: var(--ink);
+    }
+
+    .svc-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      color: var(--ink);
+    }
+
+    .svc-card > p {
       font-size: 0.9rem;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.65;
     }
 
-    @media (max-width: 540px) {
-      .modal-box { padding: 36px 24px 28px; }
-      .form-row { grid-template-columns: 1fr; }
+    .svc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
     }
+    .svc-tag {
+      font-size: 0.73rem;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 100px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--ink-mid);
+    }
+    .blue .svc-tag  { background: rgba(10,61,43,0.07); border-color: rgba(10,61,43,0.2); color: var(--blue); }
+    .coral .svc-tag { background: rgba(255,75,62,0.07); border-color: rgba(255,75,62,0.2); color: var(--coral); }
+    .purple .svc-tag { background: rgba(204,255,0,0.12); border-color: rgba(170,200,0,0.3); color: #5A7000; }
+
+    .svc-link {
+      margin-top: auto;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.15s;
+    }
+    .svc-link:hover { gap: 10px; }
+    .blue .svc-link   { color: var(--blue); }
+    .coral .svc-link  { color: var(--coral); }
+    .purple .svc-link { color: #5A7000; }
+
+    /* ─── PORTFOLIO ─── */
+    #portfolio {
+      padding: 100px 40px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .portfolio-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 52px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .portfolio-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .f-btn {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .f-btn:hover { border-color: var(--ink); color: var(--ink); }
+    .f-btn.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--white);
+    }
+
+    /* ─── Clean portfolio grid ─── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .p-card {
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .p-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.11);
+      border-color: transparent;
+    }
+    .p-card.featured { grid-column: span 2; }
+
+    .p-thumb {
+      width: 100%;
+      height: 260px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--bg);
+    }
+    .p-card.featured .p-thumb { height: 360px; }
+
+    .p-thumb img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.5s ease;
+    }
+    .p-card:hover .p-thumb img { transform: scale(1.04); }
+
+    .p-thumb-styled {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 24px;
+    }
+
+    /* Category pill badge */
+    .p-cat-pill {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 5;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      line-height: 1.4;
+    }
+    .p-cat-pill.websites { background: var(--blue); color: var(--lime); }
+    .p-cat-pill.branding { background: var(--ink); color: var(--white); }
+    .p-cat-pill.design   { background: var(--coral); color: var(--white); }
+    .p-cat-pill.ai       { background: #7B2FFF; color: #fff; }
+
+    .p-hover-reveal {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,61,43,0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s;
+      z-index: 10;
+    }
+    .p-card:hover .p-hover-reveal { opacity: 1; }
+    .p-hover-btn {
+      background: var(--lime);
+      color: var(--ink);
+      padding: 11px 28px;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .p-info {
+      padding: 18px 22px 22px;
+      border-top: 1.5px solid var(--border);
+      flex: 1;
+    }
+    .p-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+    .p-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .portfolio-footer {
+      text-align: center;
+      margin-top: 52px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .portfolio-footer p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ─── COLOR BAND ─── */
+    .color-band {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .band-cell {
+      padding: 52px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      border-right: 1.5px solid var(--border);
+      transition: background 0.2s;
+    }
+    .band-cell:last-child { border-right: none; }
+    .band-cell:hover { background: var(--bg); }
+
+    .band-icon { font-size: 2rem; }
+
+    .band-num {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+    .band-cell:nth-child(1) .band-num { color: var(--blue); }
+    .band-cell:nth-child(2) .band-num { color: var(--coral); }
+    .band-cell:nth-child(3) .band-num { color: var(--blue); }
+    .band-cell:nth-child(4) .band-num { color: var(--coral); }
+
+    .band-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .band-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ─── INDUSTRIES ─── */
+    #industries {
+      padding: 100px 40px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .ind-header { text-align: center; margin-bottom: 52px; }
+
+    .ind-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .ind-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      transition: all 0.2s;
+      background: var(--white);
+    }
+    .ind-pill:nth-child(odd):hover  { background: var(--blue); border-color: var(--blue); color: var(--lime); }
+    .ind-pill:nth-child(even):hover { background: var(--coral); border-color: var(--coral); color: var(--white); }
+    .ind-pill span { font-size: 1.1rem; }
+
+    /* ─── WHY ─── */
+    #why {
+      background: var(--ink);
+      padding: 100px 40px;
+      border-top: 1.5px solid var(--border);
+    }
+
+    .why-inner { max-width: 1120px; margin: 0 auto; }
+
+    .why-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+      gap: 32px;
+    }
+
+    .why-top .section-label { color: var(--lime); }
+    .why-top .section-hed { color: var(--white); max-width: 500px; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .why-card {
+      border: 1.5px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 32px 24px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-card:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-4px);
+    }
+
+    .why-card-accent {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .why-card:hover .why-card-accent { transform: scaleX(1); }
+    .why-card:nth-child(1) .why-card-accent { background: var(--lime); }
+    .why-card:nth-child(2) .why-card-accent { background: var(--coral); }
+    .why-card:nth-child(3) .why-card-accent { background: var(--lime); }
+    .why-card:nth-child(4) .why-card-accent { background: var(--coral); }
+
+    .why-card-icon { font-size: 1.8rem; margin-bottom: 16px; }
+
+    .why-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .why-card p {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.65;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials {
+      padding: 100px 40px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .test-top { text-align: center; margin-bottom: 56px; }
+    .test-top .section-label { display: block; margin-bottom: 10px; }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .test-card {
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s;
+    }
+    .test-card:hover { transform: translateY(-5px); }
+
+    .test-card:nth-child(1) { background: var(--blue); }
+    .test-card:nth-child(2) { background: var(--lime); }
+    .test-card:nth-child(3) { background: var(--coral); }
+
+    .test-q {
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 0.7;
+      margin-bottom: 16px;
+      font-family: Georgia, serif;
+    }
+    .test-card:nth-child(1) .test-q { color: rgba(255,255,255,0.2); }
+    .test-card:nth-child(2) .test-q { color: rgba(0,0,0,0.08); }
+    .test-card:nth-child(3) .test-q { color: rgba(255,255,255,0.2); }
+
+    .test-text {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .test-card:nth-child(1) .test-text { color: rgba(255,255,255,0.85); }
+    .test-card:nth-child(2) .test-text { color: rgba(10,10,8,0.75); }
+    .test-card:nth-child(3) .test-text { color: rgba(255,255,255,0.85); }
+
+    .test-author { display: flex; align-items: center; gap: 12px; }
+
+    .test-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .test-card:nth-child(1) .test-avatar { background: rgba(255,255,255,0.15); color: var(--white); }
+    .test-card:nth-child(2) .test-avatar { background: var(--blue); color: var(--lime); }
+    .test-card:nth-child(3) .test-avatar { background: rgba(255,255,255,0.15); color: var(--white); }
+
+    .test-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .test-org {
+      font-size: 0.75rem;
+      margin-top: 2px;
+    }
+    .test-card:nth-child(1) .test-name,
+    .test-card:nth-child(3) .test-name { color: var(--white); }
+    .test-card:nth-child(1) .test-org,
+    .test-card:nth-child(3) .test-org { color: rgba(255,255,255,0.5); }
+    .test-card:nth-child(2) .test-name { color: var(--ink); }
+    .test-card:nth-child(2) .test-org { color: rgba(10,10,8,0.55); }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      margin: 0 40px 100px;
+      background: var(--blue);
+
+      border-radius: 28px;
+      padding: 72px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      top: -200px; right: -100px;
+      pointer-events: none;
+    }
+
+    .cta-text { position: relative; z-index: 2; }
+
+    .cta-text h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .cta-text p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      line-height: 1.65;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn-white {
+      background: var(--lime);
+      color: var(--ink);
+      padding: 15px 32px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.18s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .btn-outline-white-cta {
+      background: transparent;
+      color: var(--white);
+      padding: 14px 30px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-block;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      transition: all 0.18s;
+    }
+    .btn-outline-white-cta:hover {
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FORM ─── */
+    #contact {
+      padding: 100px 40px;
+      background: var(--bg);
+      border-top: 1.5px solid var(--border);
+    }
+
+    .contact-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-left .section-label { display: block; margin-bottom: 10px; }
+    .contact-left .section-hed { margin-bottom: 20px; }
+
+    .contact-left p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .c-info-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+    }
+    .c-info-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .contact-form {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      padding: 48px;
+    }
+
+    .contact-form h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .contact-form > p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-mid);
+      letter-spacing: 0.3px;
+    }
+
+    input, select, textarea {
+      font-family: inherit;
+      font-size: 0.88rem;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 14px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(10,61,43,0.1);
+      background: var(--white);
+    }
+    textarea { resize: vertical; min-height: 90px; }
+
+    .form-submit-row {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .form-note {
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+    .btn-form {
+      background: var(--ink);
+      color: var(--white);
+      padding: 13px 28px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.18s;
+      flex-shrink: 0;
+    }
+    .btn-form:hover {
+      background: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(10,61,43,0.3);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      padding: 56px 40px 32px;
+      border-top: 1.5px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-inner { max-width: 1120px; margin: 0 auto; }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1.5px solid rgba(255,255,255,0.06);
+    }
+
+    .f-brand .logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    .f-brand .logo span { color: var(--lime); }
+
+    .f-brand p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.65;
+      max-width: 240px;
+      margin-bottom: 24px;
+    }
+
+    .socials { display: flex; gap: 8px; }
+    .s-link {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .s-link:hover {
+      background: var(--lime);
+      border-color: var(--lime);
+      color: var(--ink);
+    }
+
+    .f-col h4 {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 16px;
+    }
+    .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .f-col ul a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.15s;
+    }
+    .f-col ul a:hover { color: var(--white); }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.18); }
+
+    .footer-tagline-pills {
+      display: flex;
+      gap: 6px;
+    }
+    .f-pill {
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .f-pill:nth-child(1) { background: rgba(10,61,43,0.4); color: var(--lime); }
+    .f-pill:nth-child(2) { background: rgba(204,255,0,0.15); color: #AADD00; }
+    .f-pill:nth-child(3) { background: rgba(255,75,62,0.2); color: #FF8077; }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      padding: 40px;
+    }
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    #lightbox-img {
+      position: static !important;
+      inset: auto !important;
+      display: block;
+      width: auto !important;
+      height: auto !important;
+      max-width: 88vw;
+      max-height: 82vh;
+      object-fit: contain !important;
+      object-position: center !important;
+      border-radius: 12px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+      transform: scale(0.93);
+      transition: transform 0.25s;
+      padding: 0 !important;
+    }
+    .lightbox.open #lightbox-img {
+      transform: scale(1);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
 
     /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      .hero { padding: 100px 24px 60px; }
-      .hero-inner { grid-template-columns: 1fr; gap: 60px; }
-      .hero-visual { min-height: 420px; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .steps-grid { grid-template-columns: 1fr; gap: 40px; }
+    @media (max-width: 1024px) {
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .p-card.featured { grid-column: span 2; }
+      .color-band { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      nav .nav-links { display: none; }
+      #hero { padding: 110px 20px 60px; }
+      .hero-sub-row { flex-direction: column; align-items: flex-start; }
+      .hero-actions { align-items: flex-start; flex-direction: row; }
+      #about { padding: 72px 20px; }
+      .about-layout { grid-template-columns: 1fr; gap: 48px; }
+      #services { padding: 72px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      #portfolio { padding: 72px 20px; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .p-card.featured { grid-column: span 1; }
+      .p-card.featured .p-thumb { height: 260px; }
+      #industries { padding: 72px 20px; }
+      #why { padding: 72px 20px; }
       .why-grid { grid-template-columns: 1fr; }
-      .why-visual { display: none; }
-      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
-      .reviews-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-      .section, .why-section, .pricing-section, .reviews-section, .cta-section { padding: 70px 24px; }
-      footer { padding: 32px 24px; text-align: center; justify-content: center; }
+      #testimonials { padding: 72px 20px; }
+      .test-grid { grid-template-columns: 1fr; }
+      .cta-banner { margin: 0 20px 72px; padding: 48px 32px; flex-direction: column; }
+      #contact { padding: 72px 20px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .form-grid { grid-template-columns: 1fr; }
+      footer { padding: 48px 20px 28px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .color-band { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo">One <span>Kreative</span></div>
-    <ul class="nav-links">
-      <li><a href="#how-it-works">How It Works</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><button onclick="openModal()" class="nav-cta">Reserve Your Spot</button></li>
-    </ul>
-  </nav>
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#" class="nav-logo">One<span>Kreative</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-btn">Get Started</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <p class="eyebrow">CO-OP EDDM · Every Door Direct Mail</p>
-        <h1>Get Your Business Into <em>Every Mailbox</em> in Town</h1>
-        <p>
-          Join Austin-area businesses on One Kreative's 9×12 co-op mailer - delivered every two weeks to thousands of local homes. We design your ad, you grow your business.
-        </p>
-        <div class="hero-actions">
-          <button onclick="openModal()" class="btn-primary btn-trigger">Reserve Your Spot →</button>
-          <a href="#how-it-works" class="btn-secondary">See How It Works</a>
-        </div>
-      </div>
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg-shape hero-bg-1"></div>
+  <div class="hero-bg-shape hero-bg-2"></div>
+  <div class="hero-bg-shape hero-bg-3"></div>
 
-      <div class="hero-visual">
-        <div class="postcard-scene">
-
-          <!-- Floating Reviews -->
-          <div class="review-float review-1">
-            <div class="stars">★★★★★</div>
-            <p>"We got 14 new customers our first week. Best marketing spend we've made."</p>
-            <div class="reviewer">Marco's Barbershop</div>
-          </div>
-
-          <div class="review-float review-2">
-            <div class="stars">★★★★★</div>
-            <p>"The design was beautiful and the response blew us away."</p>
-            <div class="reviewer">Bloom & Co. Florist</div>
-          </div>
-
-          <div class="review-float review-3">
-            <div class="stars">★★★★★</div>
-            <p>"Affordable, professional, and actually works. Renewing every month."</p>
-            <div class="reviewer">Clean Slate HVAC</div>
-          </div>
-
-          <div class="review-float review-4">
-            <div class="stars">★★★★★</div>
-            <p>"Loved that they handled everything. Just approved the design."</p>
-            <div class="reviewer">Prestige Nails & Spa</div>
-          </div>
-
-          <!-- Postcard -->
-          <div class="postcard">
-            <div class="postcard-inner">
-              <span class="postcard-size-badge">9 × 12 in</span>
-              <div class="postcard-logo">One Kreative</div>
-              <div class="postcard-tagline">Co-Op EDDM Mailer</div>
-              <div class="postcard-headline">Your Ad<br/>Here</div>
-            </div>
-          </div>
-
-          <!-- Hand SVG -->
-          <svg class="hand-svg" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Palm -->
-            <ellipse cx="130" cy="230" rx="90" ry="70" fill="#8B5E3C"/>
-            <!-- Thumb -->
-            <ellipse cx="48" cy="195" rx="22" ry="40" transform="rotate(-20 48 195)" fill="#7A4F2E"/>
-            <!-- Index finger -->
-            <rect x="60" y="100" width="34" height="110" rx="17" fill="#8B5E3C"/>
-            <!-- Middle finger -->
-            <rect x="100" y="88" width="34" height="122" rx="17" fill="#7A4F2E"/>
-            <!-- Ring finger -->
-            <rect x="140" y="95" width="34" height="115" rx="17" fill="#8B5E3C"/>
-            <!-- Pinky -->
-            <rect x="178" y="108" width="28" height="100" rx="14" fill="#7A4F2E"/>
-            <!-- Wrist/cuff -->
-            <rect x="70" y="260" width="120" height="40" rx="8" fill="#6B3E26"/>
-            <rect x="62" y="272" width="136" height="28" rx="6" fill="#5a3020"/>
-            <!-- Knuckle highlights -->
-            <ellipse cx="77" cy="148" rx="12" ry="6" fill="rgba(255,255,255,0.08)"/>
-            <ellipse cx="117" cy="136" rx="12" ry="6" fill="rgba(255,255,255,0.08)"/>
-            <ellipse cx="157" cy="142" rx="12" ry="6" fill="rgba(255,255,255,0.08)"/>
-            <ellipse cx="192" cy="154" rx="10" ry="5" fill="rgba(255,255,255,0.08)"/>
-          </svg>
-        </div>
-      </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="badge">New</span>
+      Creative Agency · Digital Studio · AI Consultancy
     </div>
-  </section>
-
-  <!-- EXCLUSIVITY BANNER -->
-  <div class="excl-banner">
-    <p>🔒 One Business Per Category &nbsp;<span>- We never run two ads for the same type of service on the same mailer. Your spot is yours alone.</span></p>
-    <span class="sides-note">📬 Two layouts available — Business (10 slots) &amp; Community (16 slots) — your category stays exclusive across the entire mailer</span>
-  </div>
-
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat-item">
-        <div class="number">2,500</div>
-        <div class="label">Homes Reached Per Drop</div>
-      </div>
-      <div class="stat-item">
-        <div class="number">2×</div>
-        <div class="label">Monthly Delivery</div>
-      </div>
-      <div class="stat-item">
-        <div class="number">9×12</div>
-        <div class="label">Premium Postcard Size</div>
-      </div>
-      <div class="stat-item">
-        <div class="number" id="stat-slots-num">10</div>
-        <div class="label" id="stat-slots">Sides · 10 Unique Ad Slots</div>
+    <h1 class="hero-title">
+      <span class="line-accent">Design.</span><br />
+      <span class="outlined">Develop.</span><br />
+      <span class="highlighted">Innovate.</span>
+    </h1>
+    <div class="hero-sub-row">
+      <p class="hero-desc">OneKreative helps churches, nonprofits, businesses, and entrepreneurs build stronger brands through modern websites, professional design, and innovative AI solutions.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-solid">Request a Consultation</a>
+        <a href="#portfolio" class="btn btn-ghost">View Our Work</a>
       </div>
     </div>
   </div>
 
-  <!-- HOW IT WORKS -->
-  <section class="section" id="how-it-works">
-    <div class="section-inner">
-      <p class="section-eyebrow">The Process</p>
-      <h2 class="section-title">Simple as Three Steps</h2>
-      <p class="section-sub">
-        No guesswork. No design skills needed. We handle everything from concept to carrier - you just watch the customers come in.
-      </p>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">01</div>
-          <h3>Reserve Your Spot</h3>
-          <p>Choose your ad size and side on the 9×12 mailer. With only 10 slots across both sides - and one per business category - spots go fast.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">02</div>
-          <h3>We Design Your Ad</h3>
-          <p>Share your business info, offer, and brand colors. Our team builds a professional, eye-catching ad - included in your placement fee. Two rounds of revisions.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">03</div>
-          <h3>It Hits Every Door</h3>
-          <p>USPS delivers your mailer to every home on the route - no list required. Every two weeks, your business is in thousands of hands.</p>
-        </div>
+  <div class="hero-scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <!-- doubled for seamless loop -->
+    <div class="marquee-item"><div class="marquee-dot"></div>Web Development</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Graphic Design</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>AI Consulting</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Brand Identity</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Church Creative</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Workflow Automation</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Landing Pages</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Social Media</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Webflow Development</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Web Development</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Graphic Design</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>AI Consulting</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Brand Identity</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Church Creative</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Workflow Automation</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Landing Pages</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Social Media</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Webflow Development</div>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<div id="about" style="max-width:1120px;margin:0 auto;padding:100px 40px;">
+  <div class="about-layout">
+    <div class="about-left">
+      <div class="tag">About OneKreative</div>
+      <h2>Your Creative &amp;<br />Technology Partner</h2>
+      <p>OneKreative is a digital creative shop specializing in website development, graphic design, and AI consulting. We help organizations improve communication, strengthen their brand presence, and leverage technology to achieve their goals.</p>
+      <p>Whether launching a new website, developing a campaign, designing graphics, or exploring AI solutions — OneKreative provides practical and creative support tailored to your needs.</p>
+      <a href="#contact" class="btn btn-solid">Work With Us →</a>
+    </div>
+    <div class="about-right">
+      <div class="about-stat-card">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Core Disciplines</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="stat-num">7+</div>
+        <div class="stat-label">Industries Served</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Client-Focused</div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- WHY EDDM -->
-  <section class="why-section">
-    <div class="section-inner">
-      <div class="why-grid">
-        <div class="why-text">
-          <p class="section-eyebrow">Why It Works</p>
-          <h2 class="section-title">Physical Mail Still Wins</h2>
-          <p class="section-sub">
-            In a world of scrolling, a 9×12 postcard stands out on the kitchen counter. EDDM consistently outperforms digital ads for local service businesses.
-          </p>
-          <ul class="feature-list">
-            <li>
-              <div class="feature-icon">✉</div>
-              <div>
-                <h4>No Targeting Required</h4>
-                <p>EDDM covers every address on a route - no list, no data, no guesswork. Every household sees your message.</p>
-              </div>
-            </li>
-            <li>
-              <div class="feature-icon">✦</div>
-              <div>
-                <h4>Premium 9×12 Format</h4>
-                <p>Larger than a standard mailer, impossible to overlook. Your ad gets prime real estate on the biggest postcard in the mailbox.</p>
-              </div>
-            </li>
-            <li>
-              <div class="feature-icon">↻</div>
-              <div>
-                <h4>Bi-Weekly Repetition</h4>
-                <p>Marketing works through repetition. Hitting the same households every two weeks builds brand recognition and trust.</p>
-              </div>
-            </li>
-            <li>
-              <div class="feature-icon">$</div>
-              <div>
-                <h4>Shared Cost = Lower Price</h4>
-                <p>By co-oping the mailer with other local businesses, your cost drops dramatically while still reaching thousands of homes.</p>
-              </div>
-            </li>
-            <li>
-              <div class="feature-icon">🔒</div>
-              <div>
-                <h4>Your Category. Your Spot. Period.</h4>
-                <p>We only place <strong>one ad per service type</strong> across the entire mailer - front and back. No competing with another plumber, salon, or restaurant. If you're in, you're the only one.</p>
-              </div>
-            </li>
-            <li>
-              <div class="feature-icon">◫</div>
-              <div>
-                <h4>Front &amp; Back - All Unique</h4>
-                <p>Both sides of the 9×12 carry ads, but every slot is a different business. 10 unique advertisers, maximum variety, zero repetition.</p>
-              </div>
-            </li>
-          </ul>
+<!-- ══ COLOR BAND (Why) ══ -->
+<div class="color-band">
+  <div class="band-cell">
+    <div>
+      <div class="band-icon">🎯</div>
+    </div>
+    <div>
+      <div class="band-num">01</div>
+      <div class="band-label">Strategic Thinking</div>
+      <div class="band-desc">Solutions aligned with your goals, not just attractive deliverables.</div>
+    </div>
+  </div>
+  <div class="band-cell">
+    <div>
+      <div class="band-icon">✨</div>
+    </div>
+    <div>
+      <div class="band-num">02</div>
+      <div class="band-label">Creative Excellence</div>
+      <div class="band-desc">Design that communicates clearly and builds genuine trust.</div>
+    </div>
+  </div>
+  <div class="band-cell">
+    <div>
+      <div class="band-icon">⚙️</div>
+    </div>
+    <div>
+      <div class="band-num">03</div>
+      <div class="band-label">Technology Expertise</div>
+      <div class="band-desc">Web development, digital communications, and emerging AI tools.</div>
+    </div>
+  </div>
+  <div class="band-cell">
+    <div>
+      <div class="band-icon">🤝</div>
+    </div>
+    <div>
+      <div class="band-num">04</div>
+      <div class="band-label">Personalized Service</div>
+      <div class="band-desc">Direct collaboration and responsive support on every project.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="services-inner">
+    <div class="services-top">
+      <div>
+        <div class="section-label">What We Do</div>
+        <h2 class="section-hed">Services Designed<br />for Growth</h2>
+      </div>
+      <a href="#contact" class="btn btn-ghost">Start a Project →</a>
+    </div>
+    <div class="services-grid">
+
+      <div class="svc-card blue">
+        <div class="svc-num">01</div>
+        <div class="svc-icon-wrap">🌐</div>
+        <h3>Website Development</h3>
+        <p>Professional websites designed to help organizations communicate clearly, generate leads, and create engaging digital experiences.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Website Design</span>
+          <span class="svc-tag">Webflow</span>
+          <span class="svc-tag">Landing Pages</span>
+          <span class="svc-tag">Mobile Optimization</span>
+          <span class="svc-tag">SEO</span>
+          <span class="svc-tag">Maintenance</span>
         </div>
-        <div class="why-visual">
-          <div class="postcard-stack">
-            <div class="stack-card stack-card-1">
-              <div class="stack-card-inner">
-                <div class="card-biz">Local Plumbing Co.</div>
-                <div class="card-msg">20% Off Service Calls This Month</div>
-              </div>
-            </div>
-            <div class="stack-card stack-card-2">
-              <div class="stack-card-inner">
-                <div class="card-biz">Salon Luxe</div>
-                <div class="card-msg">New Client Special - Book Now</div>
-              </div>
-            </div>
-            <div class="stack-card stack-card-3">
-              <div class="stack-card-inner">
-                <div class="card-biz">Tex-Mex Grill</div>
-                <div class="card-msg">Grand Opening · Free Queso</div>
-              </div>
+        <a href="#contact" class="svc-link">Explore service →</a>
+      </div>
+
+      <div class="svc-card coral">
+        <div class="svc-num">02</div>
+        <div class="svc-icon-wrap">🎨</div>
+        <h3>Graphic Design</h3>
+        <p>Visual communication solutions that strengthen brands and increase engagement across every channel and platform.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Branding</span>
+          <span class="svc-tag">Logo Design</span>
+          <span class="svc-tag">Social Media</span>
+          <span class="svc-tag">Event Promo</span>
+          <span class="svc-tag">Print Design</span>
+          <span class="svc-tag">Presentations</span>
+        </div>
+        <a href="#contact" class="svc-link">Explore service →</a>
+      </div>
+
+      <div class="svc-card purple">
+        <div class="svc-num">03</div>
+        <div class="svc-icon-wrap">🤖</div>
+        <h3>AI Consulting</h3>
+        <p>Practical AI solutions that help organizations work smarter, automate tasks, and improve customer experiences.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">AI Strategy</span>
+          <span class="svc-tag">Automation</span>
+          <span class="svc-tag">Chatbots</span>
+          <span class="svc-tag">Content Systems</span>
+          <span class="svc-tag">Training</span>
+          <span class="svc-tag">AI Workflows</span>
+        </div>
+        <a href="#contact" class="svc-link">Explore service →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PORTFOLIO ══ -->
+<section id="portfolio">
+  <div class="portfolio-top">
+    <div>
+      <div class="section-label">Our Work</div>
+      <h2 class="section-hed">Selected Projects</h2>
+    </div>
+    <div class="portfolio-filters">
+      <button class="f-btn active" onclick="filterCards('all',this)">All</button>
+      <button class="f-btn" onclick="filterCards('websites',this)">Websites</button>
+      <button class="f-btn" onclick="filterCards('branding',this)">Branding</button>
+      <button class="f-btn" onclick="filterCards('design',this)">Design</button>
+    </div>
+  </div>
+
+  <div class="portfolio-grid" id="portfolioGrid">
+
+    <!-- GiveJoy Foundation — featured -->
+    <div class="p-card featured" data-cat="websites">
+      <div class="p-thumb">
+        <img src="ggblanding.png" alt="The GiveJoy Foundation" />
+        <span class="p-cat-pill websites">Web App · Nonprofit</span>
+        <div class="p-hover-reveal">
+          <a href="https://ggbportal.givejoyfoundation.org" target="_blank" class="p-hover-btn">View Project</a>
+        </div>
+      </div>
+      <div class="p-info">
+        <div class="p-title">The GiveJoy Foundation</div>
+        <div class="p-desc">Mobile-friendly registration platform for an annual Christmas Drive — bringing holiday giving online</div>
+      </div>
+    </div>
+
+    <!-- Motherland Letters -->
+    <div class="p-card" data-cat="branding">
+      <div class="p-thumb" style="background:#13172E;">
+        <img src="motherland-logo.png" alt="Motherland Letters"
+             style="object-fit:contain; padding:32px;" />
+        <span class="p-cat-pill branding">Branding · Publishing</span>
+        <div class="p-hover-reveal">
+          <a href="https://www.motherlandletters.com" target="_blank" class="p-hover-btn">View Project</a>
+        </div>
+      </div>
+      <div class="p-info">
+        <div class="p-title">Motherland Letters</div>
+        <div class="p-desc">Brand identity, logo &amp; website for a subscription letter service recovering erased voices from history</div>
+      </div>
+    </div>
+
+    <!-- Noir Lavender -->
+    <div class="p-card" data-cat="branding">
+      <div class="p-thumb" style="background:#f5e8e4;">
+        <img src="Noir_Lavendar_Draft1.png" alt="Noir Lavender"
+             style="object-fit:cover;" />
+        <span class="p-cat-pill branding">Branding · Fashion</span>
+        <div class="p-hover-reveal">
+          <a href="https://www.noirlavender.com" target="_blank" class="p-hover-btn">View Project</a>
+        </div>
+      </div>
+      <div class="p-info">
+        <div class="p-title">Noir Lavender</div>
+        <div class="p-desc">Brand identity, logo &amp; editorial website for a bold fashion &amp; lifestyle brand</div>
+      </div>
+    </div>
+
+    <!-- The Table -->
+    <div class="p-card" data-cat="branding">
+      <div class="p-thumb" style="background:#ffffff;">
+        <img src="thetable-logo.png" alt="The Table"
+             style="object-fit:contain; padding:32px;" />
+        <span class="p-cat-pill branding">Branding · Ministry</span>
+        <div class="p-hover-reveal">
+          <div class="p-hover-btn" onclick="openLightbox('thetable-logo.png','The Table','white')">View Project</div>
+        </div>
+      </div>
+      <div class="p-info">
+        <div class="p-title">The Table</div>
+        <div class="p-desc">Logo &amp; brand identity for an online ministry holding space for believers and nonbelievers alike</div>
+      </div>
+    </div>
+
+    <!-- BH Solutions -->
+    <div class="p-card" data-cat="branding">
+      <div class="p-thumb" style="background:#ffffff;">
+        <img src="bhsolution.png" alt="BH Solutions"
+             style="object-fit:contain; padding:32px;" />
+        <span class="p-cat-pill branding">Logo Design · Healthcare</span>
+        <div class="p-hover-reveal">
+          <div class="p-hover-btn" onclick="openLightbox('bhsolution.png','BH Solutions','white')">View Project</div>
+        </div>
+      </div>
+      <div class="p-info">
+        <div class="p-title">BH Solutions</div>
+        <div class="p-desc">Vibrant, professional logo &amp; color system for Browning Health Solutions — quality, excellence, and advocacy</div>
+      </div>
+    </div>
+
+    <!-- The Journey -->
+    <div class="p-card" data-cat="design" style="display:none;">
+      <div class="p-thumb" style="background:linear-gradient(145deg,#0A0A0A,#1A1A18);">
+        <div class="p-thumb-styled">
+          <div style="text-align:center;">
+            <div style="font-size:2.6rem;font-weight:900;color:var(--lime);letter-spacing:-1px;line-height:1;">THE</div>
+            <div style="font-size:2.6rem;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1;">JOURNEY</div>
+            <div style="font-size:0.52rem;letter-spacing:4px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-top:12px;">Sermon Series</div>
+            <div style="display:flex;gap:5px;justify-content:center;margin-top:12px;">
+              <div style="height:3px;width:28px;background:var(--lime);border-radius:2px;"></div>
+              <div style="height:3px;width:14px;background:rgba(255,255,255,0.2);border-radius:2px;"></div>
             </div>
           </div>
         </div>
+        <span class="p-cat-pill design">Design · Church</span>
+        <div class="p-hover-reveal">
+          <div class="p-hover-btn">View Project</div>
+        </div>
+      </div>
+      <div class="p-info">
+        <div class="p-title">"The Journey" Series</div>
+        <div class="p-desc">Sermon series graphics, social media assets &amp; print materials for a multi-week church campaign</div>
       </div>
     </div>
-  </section>
 
-  <!-- PRICING -->
-  <section class="pricing-section" id="pricing">
-    <div class="section-inner">
-      <div class="pricing-header">
-        <p class="section-eyebrow">Ad Placement Options</p>
-        <h2 class="section-title">Pick Your Size, Own Your Space</h2>
-        <p class="section-sub" style="margin:0 auto; text-align:center;" id="pricing-desc">
-          All placements include professional ad design and bi-weekly USPS delivery. One business per category — your spot, exclusively yours.
-        </p>
-      </div>
+  </div>
 
-      <!-- Pricing Tabs -->
-      <div class="pricing-tabs">
-        <button class="pricing-tab active" data-pricing="business">Business Layout</button>
-        <button class="pricing-tab" data-pricing="community">Community Layout</button>
-      </div>
+  <div class="portfolio-footer">
+    <p>More projects available on request</p>
+    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+  </div>
+</section>
 
-      <!-- Business Layout Pricing -->
-      <div id="pricing-business">
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="plan-name">Small Spot</div>
-          <div class="price">$175<span>/drop</span></div>
-          <div class="price-note">2.75" × 3.5" · 6 slots available (3 per side)</div>
-          <div class="pricing-divider"></div>
-          <ul class="pricing-features">
-            <li>Ad design included</li>
-            <li>Bi-weekly USPS delivery</li>
-            <li>2,500 homes per drop</li>
-            <li>2 revision rounds</li>
-            <li>Category exclusivity - whole mailer</li>
-          </ul>
-          <button onclick="openModal('Small')" class="btn-primary">Reserve This Spot</button>
-        </div>
-
-        <div class="pricing-card featured">
-          <div class="popular-badge">Most Popular</div>
-          <div class="plan-name">Medium Spot</div>
-          <div class="price">$325<span>/drop</span></div>
-          <div class="price-note">5.68" × 3.5" · 2 slots available (1 per side)</div>
-          <div class="pricing-divider"></div>
-          <ul class="pricing-features">
-            <li>Ad design included</li>
-            <li>Bi-weekly USPS delivery</li>
-            <li>2,500 homes per drop</li>
-            <li>2 revision rounds</li>
-            <li>Category exclusivity - whole mailer</li>
-            <li>Double-wide visibility</li>
-          </ul>
-          <button onclick="openModal('Medium')" class="btn-primary">Reserve This Spot</button>
-        </div>
-
-        <div class="pricing-card">
-          <div class="plan-name">Large Spot</div>
-          <div class="price">$499<span>/drop</span></div>
-          <div class="price-note">8.59" × 3.5" · 2 slots available (1 per side)</div>
-          <div class="pricing-divider"></div>
-          <ul class="pricing-features">
-            <li>Ad design included</li>
-            <li>Bi-weekly USPS delivery</li>
-            <li>2,500 homes per drop</li>
-            <li>3 revision rounds</li>
-            <li>Category exclusivity - whole mailer</li>
-            <li>Dominant near-full-width placement</li>
-            <li>Monthly performance check-in</li>
-          </ul>
-          <button onclick="openModal('Large')" class="btn-primary">Reserve This Spot</button>
-        </div>
-      </div>
+<!-- ══ INDUSTRIES ══ -->
+<section id="industries" style="background:var(--bg); border-top:1.5px solid var(--border); border-bottom:1.5px solid var(--border); padding:80px 40px;">
+  <div style="max-width:1120px;margin:0 auto;">
+    <div class="ind-header">
+      <div class="section-label">Who We Serve</div>
+      <h2 class="section-hed">Built for Organizations Like Yours</h2>
     </div>
-      </div><!-- /#pricing-business -->
-
-      <!-- Community Layout Pricing -->
-      <div id="pricing-community" style="display:none;">
-        <div class="pricing-grid" style="grid-template-columns: repeat(2,1fr); max-width: 720px;">
-
-          <div class="pricing-card">
-            <div class="plan-name">Single Spot</div>
-            <div class="price">$150<span>/drop</span></div>
-            <div class="price-note">2.75" × 3.5" · 16 slots available (8 per side)</div>
-            <div class="pricing-divider"></div>
-            <ul class="pricing-features">
-              <li>Ad design included</li>
-              <li>Bi-weekly USPS delivery</li>
-              <li>2,500 homes per drop</li>
-              <li>2 revision rounds</li>
-              <li>Category exclusivity — whole mailer</li>
-            </ul>
-            <button onclick="openModal('Small')" class="btn-primary">Reserve This Spot</button>
-          </div>
-
-          <div class="pricing-card featured">
-            <div class="popular-badge">Best Value</div>
-            <div class="plan-name">Full Side (8 Spots)</div>
-            <div class="price">$1,000<span>/drop</span></div>
-            <div class="price-note">Own an entire side of the community mailer</div>
-            <div class="pricing-divider"></div>
-            <ul class="pricing-features">
-              <li>All 8 business card slots on one side</li>
-              <li>Mix of your own ads or resell spots</li>
-              <li>Ad design for all spots included</li>
-              <li>Bi-weekly USPS delivery</li>
-              <li>2,500 homes per drop</li>
-              <li>3 revision rounds</li>
-              <li>Monthly performance check-in</li>
-            </ul>
-            <button onclick="openModal('Large')" class="btn-primary">Reserve Full Side</button>
-          </div>
-
-        </div>
-        <p style="text-align:center; font-size:0.78rem; color:var(--muted); margin-top:20px;">* Community layout pricing is placeholder — confirm with One Kreative for current rates.</p>
-      </div><!-- /#pricing-community -->
-
+    <div class="ind-grid">
+      <div class="ind-pill"><span>⛪</span> Churches</div>
+      <div class="ind-pill"><span>🤝</span> Nonprofits</div>
+      <div class="ind-pill"><span>🎓</span> Education</div>
+      <div class="ind-pill"><span>🏪</span> Small Businesses</div>
+      <div class="ind-pill"><span>💼</span> Professional Services</div>
+      <div class="ind-pill"><span>🏘️</span> Community Organizations</div>
+      <div class="ind-pill"><span>🚀</span> Entrepreneurs</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CARD LAYOUT -->
-  <section class="layout-section">
-    <div class="section-inner">
-      <div class="layout-header">
-        <p class="section-eyebrow">The Mailer Layout</p>
-        <h2 class="section-title">See Exactly Where Your Ad Lives</h2>
-        <p class="section-sub" style="margin:0 auto;text-align:center;" id="layout-desc">
-          A 9×12 postcard — ads on both sides, 5 unique businesses per side, 10 total. Here's the exact layout.
-        </p>
-      </div>
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimonials">
+  <div class="test-top">
+    <span class="section-label">Client Stories</span>
+    <h2 class="section-hed">What Clients Are Saying</h2>
+  </div>
+  <div class="test-grid">
 
-      <!-- Layout Tabs -->
-      <div class="layout-tabs">
-        <button class="layout-tab active" data-layout="business">Business Layout</button>
-        <button class="layout-tab" data-layout="community">Community Layout</button>
-      </div>
-
-      <!-- Business Layout -->
-      <div id="layout-business">
-      <div class="layout-sides">
-
-        <!-- FRONT -->
+    <div class="test-card">
+      <div class="test-q">"</div>
+      <p class="test-text">OneKreative completely transformed how our church communicates online. Our new website is professional, easy to navigate, and we've seen more first-time visitors connect with us every week.</p>
+      <div class="test-author">
+        <div class="test-avatar">MP</div>
         <div>
-          <div class="layout-side-label">▶︎ Front Side</div>
-          <div class="mailer-card">
-            <div class="mailer-row">
-              <div class="ad-slot slot-sm"><div class="slot-label">Small Ad</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$175/drop</div></div>
-              <div class="ad-slot slot-sm"><div class="slot-label">Small Ad</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$175/drop</div></div>
-              <div class="ad-slot slot-sm"><div class="slot-label">Small Ad</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$175/drop</div></div>
-            </div>
-            <div class="mailer-gap"></div>
-            <div class="ok-strip"><span>One Kreative · CO-OP EDDM · Dripping Springs, TX</span></div>
-            <div class="mailer-gap"></div>
-            <div class="mailer-row">
-              <div class="ad-slot slot-md"><div class="slot-label">Medium Ad</div><div class="slot-size">5.68" × 3.5"</div><div class="slot-price">$325/drop</div></div>
-              <div class="ad-slot slot-lg"><div class="slot-label">Large Ad</div><div class="slot-size">8.59" × 3.5"</div><div class="slot-price">$499/drop</div></div>
-            </div>
-          </div>
+          <div class="test-name">Pastor Marcus P.</div>
+          <div class="test-org">Grace Community Church</div>
         </div>
+      </div>
+    </div>
 
-        <!-- BACK -->
+    <div class="test-card">
+      <div class="test-q">"</div>
+      <p class="test-text">The branding work OneKreative did was exceptional. They took time to understand our mission and delivered an identity that truly represents who we are as an organization.</p>
+      <div class="test-author">
+        <div class="test-avatar">LW</div>
         <div>
-          <div class="layout-side-label">◀︎ Back Side</div>
-          <div class="mailer-card">
-            <div class="mailer-row">
-              <div class="ad-slot slot-sm"><div class="slot-label">Small Ad</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$175/drop</div></div>
-              <div class="ad-slot slot-sm"><div class="slot-label">Small Ad</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$175/drop</div></div>
-              <div class="ad-slot slot-sm"><div class="slot-label">Small Ad</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$175/drop</div></div>
-            </div>
-            <div class="mailer-gap"></div>
-            <div class="ok-strip"><span>One Kreative · CO-OP EDDM · Dripping Springs, TX</span></div>
-            <div class="mailer-gap"></div>
-            <div class="mailer-row" style="align-items:stretch;">
-              <div class="ad-slot slot-md"><div class="slot-label">Medium Ad</div><div class="slot-size">5.68" × 3.5"</div><div class="slot-price">$325/drop</div></div>
-              <div class="indicia-box slot-lg"><div class="ind-label">USPS Indicia</div><div class="ind-sub">Postal permit &amp; address area</div></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      </div><!-- /#layout-business -->
-
-      <!-- Community Layout -->
-      <div id="layout-community" style="display:none;">
-        <div class="layout-sides">
-
-          <!-- COMMUNITY FRONT -->
-          <div>
-            <div class="layout-side-label">▶︎ Front Side</div>
-            <div class="community-mailer-card">
-              <div class="community-row">
-                <div class="bc-slot"><div class="slot-label">Ad 1</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 2</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 3</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 4</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-              </div>
-              <div class="community-gap"></div>
-              <div class="ok-strip"><span>One Kreative · CO-OP EDDM · Dripping Springs, TX</span></div>
-              <div class="community-gap"></div>
-              <div class="community-row">
-                <div class="bc-slot"><div class="slot-label">Ad 5</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 6</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 7</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 8</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- COMMUNITY BACK -->
-          <div>
-            <div class="layout-side-label">◀︎ Back Side</div>
-            <div class="community-mailer-card">
-              <div class="community-row">
-                <div class="bc-slot"><div class="slot-label">Ad 9</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 10</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 11</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 12</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-              </div>
-              <div class="community-gap"></div>
-              <div class="ok-strip"><span>One Kreative · CO-OP EDDM · Dripping Springs, TX</span></div>
-              <div class="community-gap"></div>
-              <div class="community-row">
-                <div class="bc-slot"><div class="slot-label">Ad 13</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 14</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot"><div class="slot-label">Ad 15</div><div class="slot-size">2.75" × 3.5"</div><div class="slot-price">$150/drop</div></div>
-                <div class="bc-slot indicia-slot"><div class="slot-label">USPS Indicia</div><div class="slot-size">Postal permit &amp; address</div></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <p style="text-align:center; font-size:0.8rem; color:var(--muted); margin-top:16px;">16 equal spots — 15 ad slots + 1 USPS indicia (back side). All spaces are 2.75" × 3.5".</p>
-      </div><!-- /#layout-community -->
-
-      <div class="layout-legend">
-        <div class="legend-item"><div class="legend-dot ad"></div> Your Ad Slot</div>
-        <div class="legend-item"><div class="legend-dot ok"></div> One Kreative Strip</div>
-        <div class="legend-item"><div class="legend-dot ind"></div> USPS Indicia (back only)</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="reviews-section" id="reviews">
-    <div class="section-inner">
-      <div class="reviews-header">
-        <p class="section-eyebrow">What Our Advertisers Say</p>
-        <h2 class="section-title">Real Results, Real Businesses</h2>
-      </div>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"We booked 14 new clients the first week the mailer dropped. Never seen results like this from digital ads. One Kreative knocked it out of the park with our design too."</blockquote>
-          <div class="reviewer-info">
-            <div class="reviewer-avatar">M</div>
-            <div>
-              <div class="reviewer-name">Marcus T.</div>
-              <div class="reviewer-biz">Marco's Barbershop · Austin, TX</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"I was skeptical about direct mail in 2024, but the response rate blew me away. The co-op price made it completely affordable for a small florist like me."</blockquote>
-          <div class="reviewer-info">
-            <div class="reviewer-avatar">S</div>
-            <div>
-              <div class="reviewer-name">Sandra M.</div>
-              <div class="reviewer-biz">Bloom & Co. Florist · Round Rock, TX</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"The design process was painless. They understood our brand from the first brief. The mailer looks more professional than anything we've put out before."</blockquote>
-          <div class="reviewer-info">
-            <div class="reviewer-avatar">D</div>
-            <div>
-              <div class="reviewer-name">Derrick B.</div>
-              <div class="reviewer-biz">Clean Slate HVAC · Cedar Park, TX</div>
-            </div>
-          </div>
+          <div class="test-name">Lisa W.</div>
+          <div class="test-org">Hope Harbor Foundation</div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- CTA -->
-  <section class="cta-section" id="get-started">
-    <div class="cta-inner">
-      <p class="section-eyebrow" style="text-align:center; margin-bottom:16px;">Limited Spots Available</p>
-      <h2>Ready to Fill Your <em>Calendar</em> with New Customers?</h2>
-      <p>
-        Routes fill up fast - especially around high-traffic neighborhoods. Reserve your spot on the next drop and let One Kreative do the rest.
-      </p>
-      <div class="cta-actions">
-        <button onclick="openModal()" class="btn-primary btn-trigger">Reserve Your Ad Spot →</button>
+    <div class="test-card">
+      <div class="test-q">"</div>
+      <p class="test-text">The AI chatbot they built saves our team hours every week. Our clients get instant answers and our staff can focus on higher-value work. Incredibly practical and effective.</p>
+      <div class="test-author">
+        <div class="test-avatar">JR</div>
+        <div>
+          <div class="test-name">James R.</div>
+          <div class="test-org">Riverside Consulting Group</div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">One <span>Kreative</span></div>
-    <p>© 2025 One Kreative. All rights reserved.</p>
-    <a href="mailto:hello@onekreative.com">hello@onekreative.com</a>
-  </footer>
+  </div>
+</section>
 
-  <!-- RESERVE MODAL -->
-  <div class="modal-overlay" id="reserveModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+<!-- ══ CTA BANNER ══ -->
+<div class="cta-banner">
+  <div class="cta-text">
+    <h2>Ready to build something great?</h2>
+    <p>Tell us about your project and we'll put together a creative plan that fits your goals and your budget.</p>
+  </div>
+  <div class="cta-actions">
+    <a href="#contact" class="btn-white">Request a Consultation</a>
+    <a href="#portfolio" class="btn-outline-white-cta">See Our Work</a>
+  </div>
+</div>
 
-      <!-- Form view -->
-      <div id="modalForm">
-        <p class="modal-eyebrow">Limited Spots Available</p>
-        <h2 class="modal-title" id="modalTitle">Reserve Your Ad Spot</h2>
-        <p class="modal-sub">Fill out the form below and we'll reach out within 24 hours to finalize your booking.</p>
-
-        <form id="reserveForm" onsubmit="submitReserve(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="rf-name">Your Name</label>
-              <input id="rf-name" name="name" type="text" placeholder="Jane Smith" required />
-            </div>
-            <div class="form-group">
-              <label for="rf-biz">Business Name</label>
-              <input id="rf-biz" name="business" type="text" placeholder="Acme Plumbing" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="rf-email">Email</label>
-              <input id="rf-email" name="email" type="email" placeholder="you@example.com" required />
-            </div>
-            <div class="form-group">
-              <label for="rf-phone">Phone</label>
-              <input id="rf-phone" name="phone" type="tel" placeholder="(555) 000-0000" />
-            </div>
+<!-- ══ FORM ══ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <span class="section-label">Start Your Project</span>
+      <h2 class="section-hed">Let's Build Something<br />Great Together</h2>
+      <p>Ready to elevate your organization's communication? Fill out the form and we'll follow up within 1–2 business days.</p>
+      <div class="contact-info">
+        <div class="c-info-row"><div class="c-info-icon">✉️</div> hello@onekreative.co</div>
+        <div class="c-info-row"><div class="c-info-icon">🌐</div> onekreative.co</div>
+        <div class="c-info-row"><div class="c-info-icon">📍</div> Serving clients nationwide</div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Request a Consultation</h3>
+      <p>We'll review your project and reach out with next steps.</p>
+      <form action="https://formspree.io/f/mbdedarg" method="POST" onsubmit="handleSubmit(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Name *</label>
+            <input type="text" placeholder="Your full name" required />
           </div>
           <div class="form-group">
-            <label for="rf-size">Desired Ad Size</label>
-            <div class="select-wrap">
-              <select id="rf-size" name="adSize" required>
-                <option value="" disabled>Select a size…</option>
-                <option value="Small">Small — 2.75″ × 3.5″</option>
-                <option value="Medium">Medium — 5.68″ × 3.5″</option>
-                <option value="Large">Large — 8.59″ × 3.5″</option>
-              </select>
-            </div>
+            <label>Organization</label>
+            <input type="text" placeholder="Church, nonprofit, business…" />
           </div>
-          <button type="submit" class="modal-submit">Submit Reservation Request →</button>
-        </form>
-      </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" placeholder="you@organization.com" required />
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="(555) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label>Current Website</label>
+            <input type="url" placeholder="https://yoursite.com" />
+          </div>
+          <div class="form-group">
+            <label>Service Needed *</label>
+            <select required>
+              <option value="" disabled selected>Select a service…</option>
+              <option>Website Development</option>
+              <option>Graphic Design</option>
+              <option>Branding</option>
+              <option>AI Consulting</option>
+              <option>Multiple Services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Budget Range</label>
+            <select>
+              <option value="" disabled selected>Select a range…</option>
+              <option>Under $1,000</option>
+              <option>$1,000 – $3,000</option>
+              <option>$3,000 – $7,500</option>
+              <option>$7,500 – $15,000</option>
+              <option>$15,000+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Timeline</label>
+            <select>
+              <option value="" disabled selected>When do you need this?</option>
+              <option>ASAP (within 2 weeks)</option>
+              <option>Within 1 month</option>
+              <option>1–3 months</option>
+              <option>3–6 months</option>
+              <option>Just exploring</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Project Description *</label>
+            <textarea placeholder="Tell us about your project, goals, and what you're looking to accomplish…" required></textarea>
+          </div>
+        </div>
+        <div class="form-submit-row">
+          <span class="form-note">We typically respond within 1–2 business days.</span>
+          <button type="submit" class="btn-form">Send Request →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
-      <!-- Success view -->
-      <div class="modal-success" id="modalSuccess">
-        <div class="check-icon">✦</div>
-        <h3>Request Received!</h3>
-        <p>Thanks for your interest. We'll be in touch within <strong>24 hours</strong> to finalize your booking and walk you through next steps.</p>
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="f-brand">
+        <div class="logo">One<span>Kreative</span></div>
+        <p>A digital creative shop helping organizations communicate with excellence through design, development, and innovation.</p>
+        <div class="socials">
+          <a href="#" class="s-link">IG</a>
+          <a href="#" class="s-link">in</a>
+          <a href="#" class="s-link">fb</a>
+          <a href="#" class="s-link">𝕏</a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Website Development</a></li>
+          <li><a href="#">Graphic Design</a></li>
+          <li><a href="#">AI Consulting</a></li>
+          <li><a href="#">Church Creative</a></li>
+          <li><a href="#">Agency Services</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="#">Churches</a></li>
+          <li><a href="#">Nonprofits</a></li>
+          <li><a href="#">Small Businesses</a></li>
+          <li><a href="#">Entrepreneurs</a></li>
+          <li><a href="#">Community Orgs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 OneKreative. All Rights Reserved.</p>
+      <div class="footer-tagline-pills">
+        <span class="f-pill">Design</span>
+        <span class="f-pill">Develop</span>
+        <span class="f-pill">Innovate</span>
       </div>
     </div>
   </div>
+</footer>
 
-  <script>
-    const layoutDescs = {
-      business: 'A 9×12 postcard — 5 unique businesses per side, 10 total ad slots across 3 size tiers. Here\'s the exact layout.',
-      community: 'A 9×12 postcard — 8 equal business card spaces per side, 15 ad slots + 1 USPS indicia, 16 spaces total. Every spot the same size.'
-    };
+<!-- ══ LIGHTBOX ══ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
 
-    function switchAll(type) {
-      // Layout tabs
-      document.querySelectorAll('.layout-tab').forEach(t => t.classList.toggle('active', t.dataset.layout === type));
-      document.getElementById('layout-business').style.display = type === 'business' ? '' : 'none';
-      document.getElementById('layout-community').style.display = type === 'community' ? '' : 'none';
-      document.getElementById('layout-desc').textContent = layoutDescs[type];
-      // Pricing tabs
-      document.querySelectorAll('.pricing-tab').forEach(t => t.classList.toggle('active', t.dataset.pricing === type));
-      document.getElementById('pricing-business').style.display = type === 'business' ? '' : 'none';
-      document.getElementById('pricing-community').style.display = type === 'community' ? '' : 'none';
-      // Stats bar — swap slot count
-      const slotStat = document.getElementById('stat-slots');
-      if (slotStat) slotStat.textContent = type === 'business' ? '2 Sides · 10 Unique Ad Slots' : '2 Sides · 16 Uniform Ad Slots';
-      const slotNum = document.getElementById('stat-slots-num');
-      if (slotNum) slotNum.textContent = type === 'business' ? '10' : '16';
+<script>
+  // Lightbox
+  function openLightbox(src, alt, bg) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    img.alt = alt || '';
+    if (bg) {
+      img.style.background = bg;
+      img.style.padding = '48px';
+      img.style.borderRadius = '16px';
+    } else {
+      img.style.background = 'transparent';
+      img.style.padding = '0';
+      img.style.borderRadius = '12px';
     }
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e) {
+    if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }});
 
-    document.querySelectorAll('.layout-tab').forEach(btn => {
-      btn.addEventListener('click', () => switchAll(btn.dataset.layout));
+  // Portfolio filter
+  function filterCards(cat, btn) {
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#portfolioGrid .p-card').forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.style.opacity = show ? '1' : '0';
+      card.style.pointerEvents = show ? '' : 'none';
+      card.style.display = show ? '' : 'none';
     });
-    document.querySelectorAll('.pricing-tab').forEach(btn => {
-      btn.addEventListener('click', () => switchAll(btn.dataset.pricing));
-    });
+  }
 
-    // ─── RESERVE MODAL ───
-    function openModal(size) {
-      const overlay = document.getElementById('reserveModal');
-      // Reset to form view
-      document.getElementById('modalForm').style.display = '';
-      document.getElementById('modalSuccess').style.display = 'none';
-      document.getElementById('reserveForm').reset();
-      // Pre-select size if provided
-      if (size) {
-        const sel = document.getElementById('rf-size');
-        for (let i = 0; i < sel.options.length; i++) {
-          if (sel.options[i].value === size) { sel.selectedIndex = i; break; }
-        }
-      }
-      overlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
+  // Form success
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-form');
+    btn.textContent = '✓ Request received!';
+    btn.style.background = '#00B894';
+    btn.disabled = true;
+  }
 
-    function closeModal() {
-      document.getElementById('reserveModal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    // Close on backdrop click
-    document.getElementById('reserveModal').addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
-
-    // Close on Escape
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeModal();
-    });
-
-    async function submitReserve(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.modal-submit');
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
-
-      const data = {
-        name:     document.getElementById('rf-name').value,
-        business: document.getElementById('rf-biz').value,
-        email:    document.getElementById('rf-email').value,
-        phone:    document.getElementById('rf-phone').value,
-        adSize:   document.getElementById('rf-size').value,
-      };
-
-      try {
-        await fetch('https://formspree.io/f/xzdwzvdb', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data)
-        });
-      } catch(_) {}
-
-      // Always show success regardless of network
-      document.getElementById('modalForm').style.display = 'none';
-      document.getElementById('modalSuccess').style.display = 'block';
-    }
-  </script>
+  // Nav border on scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.borderBottomColor = window.scrollY > 40
+      ? '#E8E8E8'
+      : '#E8E8E8';
+  });
+</script>
 </body>
 </html>
