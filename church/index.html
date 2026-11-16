@@ -11,15 +11,27 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy: #0B1F3A;
-      --navy-mid: #112B50;
-      --gold: #C9A84C;
+      --navy:       #0B1F3A;
+      --navy-mid:   #112B50;
+      --navy-deep:  #071526;
+      --gold:       #C9A84C;
       --gold-light: #E4BF72;
-      --off-white: #F8F6F2;
-      --text: #1A1A2E;
-      --muted: #6B7280;
-      --border: #E5E7EB;
-      --white: #FFFFFF;
+      --gold-dim:   rgba(201,168,76,0.12);
+      --off-white:  #F7F5F1;
+      --off-white2: #F0EDE8;
+      --text:       #1A1A2E;
+      --muted:      #6B7280;
+      --border:     #E5E7EB;
+      --border-soft:#EDEBE7;
+      --white:      #FFFFFF;
+
+      /* shadow scale */
+      --shadow-xs: 0 1px 3px rgba(11,31,58,0.05), 0 2px 8px rgba(11,31,58,0.04);
+      --shadow-sm: 0 2px 6px rgba(11,31,58,0.06), 0 6px 20px rgba(11,31,58,0.06);
+      --shadow-md: 0 4px 12px rgba(11,31,58,0.07), 0 16px 48px rgba(11,31,58,0.09);
+      --shadow-lg: 0 8px 24px rgba(11,31,58,0.08), 0 32px 80px rgba(11,31,58,0.12);
+      --shadow-gold: 0 0 0 1px rgba(201,168,76,0.35), 0 8px 32px rgba(201,168,76,0.14), 0 24px 64px rgba(11,31,58,0.25);
+      --glow-gold:  0 0 48px rgba(201,168,76,0.18), 0 0 96px rgba(201,168,76,0.08);
     }
 
     html { scroll-behavior: smooth; }
@@ -83,7 +95,7 @@
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
-      background: linear-gradient(145deg, #071628 0%, var(--navy) 50%, #0e2d52 100%);
+      background: linear-gradient(165deg, var(--navy-deep) 0%, #0d2240 45%, #0a1f3a 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -94,14 +106,45 @@
       overflow: hidden;
     }
 
+    /* dot-grid texture */
     #hero::before {
       content: '';
       position: absolute;
-      width: 700px; height: 700px;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    /* center gold glow */
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 900px; height: 900px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    /* ambient blue orb top-right */
+    .hero-orb-tr {
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,80,160,0.22) 0%, transparent 70%);
+      top: -100px; right: -80px;
+      pointer-events: none;
+    }
+
+    /* ambient gold orb bottom-left */
+    .hero-orb-bl {
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.09) 0%, transparent 70%);
+      bottom: -60px; left: -60px;
       pointer-events: none;
     }
 
@@ -109,16 +152,18 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(201,168,76,0.12);
-      border: 1px solid rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.28);
+      box-shadow: 0 0 20px rgba(201,168,76,0.08), inset 0 1px 0 rgba(255,255,255,0.06);
       color: var(--gold-light);
       font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      padding: 7px 16px;
+      padding: 7px 18px;
       border-radius: 100px;
       margin-bottom: 32px;
+      backdrop-filter: blur(8px);
     }
 
     .hero-badge::before {
@@ -135,7 +180,12 @@
       max-width: 820px;
       margin-bottom: 24px;
     }
-    #hero h1 span { color: var(--gold); }
+    #hero h1 span {
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 60%, #f5d98a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
     #hero p {
       font-size: clamp(1rem, 2vw, 1.2rem);
@@ -154,14 +204,17 @@
 
     .hero-price {
       display: inline-block;
-      background: rgba(201,168,76,0.1);
-      border: 1px solid rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.22);
+      box-shadow: 0 0 24px rgba(201,168,76,0.07), inset 0 1px 0 rgba(255,255,255,0.05);
       color: var(--gold-light);
-      padding: 10px 24px;
-      border-radius: 8px;
-      font-size: 1rem;
+      padding: 10px 26px;
+      border-radius: 100px;
+      font-size: 0.95rem;
       font-weight: 600;
       margin-bottom: 40px;
+      backdrop-filter: blur(8px);
+      letter-spacing: 0.3px;
     }
 
     .btn-group {
@@ -172,23 +225,24 @@
     }
 
     .btn-primary {
-      background: var(--gold);
+      background: linear-gradient(135deg, var(--gold) 0%, #d9b85a 50%, var(--gold-light) 100%);
       color: var(--navy);
       text-decoration: none;
       padding: 15px 32px;
       border-radius: 8px;
       font-size: 0.95rem;
       font-weight: 700;
-      transition: all 0.2s;
+      transition: all 0.25s;
       border: none;
       cursor: pointer;
       letter-spacing: 0.2px;
       display: inline-block;
+      box-shadow: 0 4px 14px rgba(201,168,76,0.3), 0 1px 0 rgba(255,255,255,0.15) inset;
     }
     .btn-primary:hover {
-      background: var(--gold-light);
+      background: linear-gradient(135deg, var(--gold-light) 0%, #e8cc7a 100%);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(201,168,76,0.35);
+      box-shadow: 0 10px 28px rgba(201,168,76,0.42), 0 1px 0 rgba(255,255,255,0.2) inset;
     }
 
     .btn-outline {
@@ -276,7 +330,16 @@
     }
 
     /* ── WHAT WE DO ── */
-    #services { background: var(--off-white); }
+    #services { background: var(--off-white); position: relative; overflow: hidden; }
+    #services::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+      bottom: -150px; right: -100px;
+      pointer-events: none;
+    }
 
     .services-body {
       display: grid;
@@ -300,21 +363,40 @@
 
     .service-card {
       background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
       padding: 24px;
-      transition: all 0.25s;
+      transition: all 0.3s;
+      box-shadow: var(--shadow-xs);
+      position: relative;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s;
+      pointer-events: none;
     }
     .service-card:hover {
-      border-color: var(--gold);
-      box-shadow: 0 8px 32px rgba(11,31,58,0.08);
-      transform: translateY(-3px);
+      border-color: rgba(201,168,76,0.3);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .service-card:hover::after {
+      border-top-color: var(--gold);
     }
 
     .service-icon {
-      font-size: 1.4rem;
-      margin-bottom: 12px;
       display: block;
+      margin-bottom: 14px;
+      width: 24px; height: 24px;
+    }
+    .service-icon svg {
+      width: 24px; height: 24px;
+      stroke: var(--gold);
+      stroke-width: 1.75;
     }
 
     .service-card h3 {
@@ -331,7 +413,27 @@
     }
 
     /* ── WHY CHOOSE ── */
-    #why { background: var(--navy); }
+    #why {
+      background: linear-gradient(165deg, var(--navy-deep) 0%, var(--navy) 50%, #0e2845 100%);
+      position: relative; overflow: hidden;
+    }
+    #why::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+    #why::after {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 65%);
+      top: -200px; left: -100px;
+      pointer-events: none;
+    }
     #why .section-title { color: var(--white); }
     #why .section-label { color: var(--gold-light); }
 
@@ -343,23 +445,31 @@
     }
 
     .why-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
       padding: 32px 24px;
-      transition: all 0.25s;
+      transition: all 0.3s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+      backdrop-filter: blur(4px);
+      position: relative;
     }
     .why-card:hover {
-      background: rgba(201,168,76,0.06);
-      border-color: rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.05);
+      border-color: rgba(201,168,76,0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2), 0 0 0 1px rgba(201,168,76,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+      transform: translateY(-4px);
     }
 
     .why-num {
-      font-size: 2rem;
+      font-size: 2.4rem;
       font-weight: 900;
-      color: var(--gold);
-      opacity: 0.4;
-      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.5;
+      margin-bottom: 16px;
       line-height: 1;
     }
 
@@ -575,7 +685,25 @@
 
     /* ── ANNOUNCEMENTS ── */
     #announcements {
-      background: linear-gradient(160deg, var(--navy) 0%, #0a2240 100%);
+      background: linear-gradient(160deg, var(--navy-deep) 0%, #0d2545 50%, #0a2240 100%);
+      position: relative; overflow: hidden;
+    }
+    #announcements::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    #announcements::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      bottom: -150px; right: -50px;
+      pointer-events: none;
     }
     #announcements .section-title { color: var(--white); }
     #announcements .section-label { color: var(--gold-light); }
@@ -610,9 +738,19 @@
 
     .announcement-callout {
       background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 16px;
+      border: 1px solid rgba(201,168,76,0.22);
+      border-radius: 20px;
       padding: 40px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.06);
+      backdrop-filter: blur(8px);
+      position: relative;
+    }
+    .announcement-callout::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 15%; right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.35), transparent);
     }
 
     .announcement-callout h3 {
@@ -676,8 +814,28 @@
 
     .gap-solution {
       background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-      border-radius: 16px;
+      border-radius: 20px;
       padding: 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .gap-solution::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.4) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .gap-solution::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      bottom: -80px; right: -60px;
+      pointer-events: none;
     }
 
     .gap-solution h3 {
@@ -711,12 +869,17 @@
     }
 
     .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
       padding: 28px;
-      transition: border-color 0.2s;
+      transition: all 0.25s;
+      box-shadow: var(--shadow-xs);
     }
-    .faq-item:hover { border-color: var(--gold); }
+    .faq-item:hover {
+      border-color: rgba(201,168,76,0.4);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
 
     .faq-item h3 {
       font-size: 0.95rem;
@@ -737,7 +900,28 @@
       background: linear-gradient(145deg, #071628 0%, var(--navy) 60%, #0e2d52 100%);
       text-align: center;
       padding: 120px 24px;
+      position: relative;
+      overflow: hidden;
     }
+    #cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+    #cta::after {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 65%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    #cta .container { position: relative; z-index: 1; }
 
     #cta h2 {
       font-size: clamp(2rem, 4vw, 3.2rem);
@@ -779,7 +963,20 @@
     }
 
     /* ── SETUP TIERS ── */
-    #setup { background: var(--off-white); }
+    #setup {
+      background: var(--off-white);
+      position: relative; overflow: hidden;
+    }
+    #setup::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--border-soft) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
     .setup-section-head {
       display: grid;
@@ -802,36 +999,51 @@
     }
 
     .setup-card {
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
       padding: 28px 22px;
       background: var(--white);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: all 0.25s;
+      transition: all 0.3s;
+      box-shadow: var(--shadow-sm);
     }
     .setup-card:hover {
-      border-color: var(--gold);
-      box-shadow: 0 12px 40px rgba(11,31,58,0.1);
-      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.4);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
     }
     .setup-card.featured {
-      border-color: var(--gold);
-      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 100%);
+      border-color: rgba(201,168,76,0.5);
+      background: linear-gradient(160deg, #0d2545 0%, var(--navy-mid) 60%, #163260 100%);
+      box-shadow: var(--shadow-gold);
+    }
+    .setup-card.featured:hover {
+      box-shadow: var(--shadow-gold), var(--glow-gold);
+      transform: translateY(-8px);
     }
     .setup-card.featured::after {
       content: 'POPULAR';
       position: absolute;
-      top: 14px; right: -26px;
-      background: var(--gold);
+      top: 16px; right: -28px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
       color: var(--navy);
       font-size: 0.55rem;
       font-weight: 800;
       letter-spacing: 1px;
-      padding: 4px 32px;
+      padding: 5px 34px;
       transform: rotate(45deg);
+    }
+    /* inner highlight on featured card top edge */
+    .setup-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+      pointer-events: none;
     }
 
     .setup-tier-label {
@@ -923,7 +1135,16 @@
     }
 
     /* ── ADD-ONS ── */
-    #addons { background: var(--white); }
+    #addons { background: var(--white); position: relative; overflow: hidden; }
+    #addons::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%);
+      top: -100px; left: -100px;
+      pointer-events: none;
+    }
 
     .addons-intro {
       max-width: 600px;
@@ -943,20 +1164,38 @@
     }
 
     .addon-card {
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
       padding: 36px 28px;
-      transition: all 0.25s;
+      transition: all 0.3s;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .addon-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      background: linear-gradient(165deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
     }
     .addon-card:hover {
-      border-color: var(--gold);
-      box-shadow: 0 12px 40px rgba(11,31,58,0.08);
-      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.4);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
     }
+    .addon-card:hover::before { opacity: 1; }
     .addon-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
       display: block;
+      margin-bottom: 20px;
+      width: 36px; height: 36px;
+    }
+    .addon-icon svg {
+      width: 36px; height: 36px;
+      stroke: var(--gold);
+      stroke-width: 1.5;
     }
     .addon-card h3 {
       font-size: 1.1rem;
@@ -985,6 +1224,160 @@
       border-radius: 100px;
     }
 
+    /* ── CONSULTING ── */
+    #consulting { background: var(--off-white); }
+
+    .consulting-intro {
+      max-width: 680px;
+      margin-bottom: 64px;
+    }
+    .consulting-intro p {
+      font-size: 1.05rem;
+      color: #4B5563;
+      line-height: 1.75;
+      margin-top: 16px;
+    }
+
+    .consulting-services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 72px;
+    }
+
+    .consult-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 26px;
+      transition: all 0.25s;
+    }
+    .consult-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 12px 40px rgba(11,31,58,0.08);
+      transform: translateY(-4px);
+    }
+    .consult-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .consult-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .consult-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .consulting-lower {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .process-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .process-num {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--navy-mid) 0%, var(--navy) 100%);
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(201,168,76,0.3);
+      box-shadow: 0 0 16px rgba(201,168,76,0.12), 0 4px 12px rgba(11,31,58,0.15);
+    }
+    .process-step-body h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .process-step-body p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .consulting-fit {
+      background: linear-gradient(145deg, var(--navy-deep) 0%, var(--navy) 50%, var(--navy-mid) 100%);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.15);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(4px);
+    }
+    .consulting-fit::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .consulting-fit::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      bottom: -120px; right: -100px;
+      pointer-events: none;
+    }
+    .consulting-fit h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .consulting-fit > p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .fit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .fit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.55;
+    }
+    .fit-list li::before {
+      content: '→';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .why-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1000,7 +1393,10 @@
       .services-body,
       .announcement-grid,
       .busy-grid,
+      .consulting-lower,
       .faq-grid { grid-template-columns: 1fr; gap: 32px; }
+
+      .consulting-services { grid-template-columns: 1fr; }
 
       .why-grid { grid-template-columns: 1fr 1fr; }
       .services-grid { grid-template-columns: 1fr 1fr; }
@@ -1024,6 +1420,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#setup">Plans</a></li>
     <li><a href="#addons">Add-ons</a></li>
+    <li><a href="#consulting">Consulting</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#cta" class="nav-cta">Book a Call</a></li>
   </ul>
@@ -1031,11 +1428,13 @@
 
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-orb-tr"></div>
+  <div class="hero-orb-bl"></div>
   <div class="hero-badge">Church Creative Partner</div>
   <h1>Websites &amp; Creative Support<br />for <span>Churches</span></h1>
   <p>Professional church websites, sermon graphics, announcement videos, and ongoing creative support — without hiring a full-time designer.</p>
   <p class="hero-sub">Designed for churches that want to communicate clearly online.</p>
-  <div class="hero-price">Plans starting at $199 · Website setup + ongoing support</div>
+  <div class="hero-price">Setup from $199 · Monthly plans from $29/mo</div>
   <div class="btn-group">
     <a href="#cta" class="btn-primary">Book a Discovery Call</a>
     <a href="#setup" class="btn-outline">View Plans</a>
@@ -1059,32 +1458,32 @@
       </div>
       <div class="services-grid">
         <div class="service-card">
-          <span class="service-icon">🌐</span>
+          <i data-lucide="globe" class="service-icon"></i>
           <h3>Modern Church Websites</h3>
           <p>Clean, visitor-friendly sites that communicate your ministry clearly.</p>
         </div>
         <div class="service-card">
-          <span class="service-icon">✝️</span>
+          <i data-lucide="book-open" class="service-icon"></i>
           <h3>Sermon Series Graphics</h3>
           <p>Professionally designed visuals for every series you preach.</p>
         </div>
         <div class="service-card">
-          <span class="service-icon">📣</span>
+          <i data-lucide="megaphone" class="service-icon"></i>
           <h3>Event Promotion Graphics</h3>
           <p>Eye-catching designs that get your congregation excited.</p>
         </div>
         <div class="service-card">
-          <span class="service-icon">🎬</span>
+          <i data-lucide="video" class="service-icon"></i>
           <h3>Sunday Announcements</h3>
           <p>Slides and videos that keep your congregation informed each week.</p>
         </div>
         <div class="service-card">
-          <span class="service-icon">📱</span>
+          <i data-lucide="smartphone" class="service-icon"></i>
           <h3>Social Media Graphics</h3>
           <p>Consistent, branded content across all your platforms.</p>
         </div>
         <div class="service-card">
-          <span class="service-icon">🔧</span>
+          <i data-lucide="wrench" class="service-icon"></i>
           <h3>Website Maintenance</h3>
           <p>Ongoing support so your site stays fresh and current.</p>
         </div>
@@ -1128,12 +1527,12 @@
   <div class="container">
     <div class="setup-section-head">
       <div>
-        <span class="section-label">Website Setup Plans</span>
-        <h2 class="section-title">Choose the plan that fits your church.</h2>
+        <span class="section-label">One-Time Setup Fee</span>
+        <h2 class="section-title">Get your church online — built right from day one.</h2>
         <div class="divider" style="margin-bottom:0;"></div>
       </div>
       <div>
-        <p>From a simple starter presence to a fully custom site — every plan is built for churches and includes everything you need to get online. Add on media, integrations, and AI as your ministry grows.</p>
+        <p>Pay once to get your church website built. Choose the tier that matches your size and needs. Every plan includes mobile-friendly design, giving integration, and launch support. Pair with a monthly plan to keep things fresh after launch.</p>
       </div>
     </div>
     <div class="setup-grid">
@@ -1141,14 +1540,14 @@
       <!-- SIMPLE -->
       <div class="setup-card">
         <div class="setup-tier-label">Simple</div>
-        <h3>Simple Setup</h3>
+        <h3>Simple</h3>
         <div class="setup-price"><sup>$</sup>199</div>
-        <p class="setup-term">per month · 1-year contract</p>
+        <p class="setup-term">one-time setup fee</p>
         <div class="setup-specs">
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> Up to 9 pages</div>
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> Template-based design</div>
-          <div class="setup-spec"><span class="setup-spec-icon">▸</span> Self-guided setup</div>
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> ~3 week turnaround</div>
+          <div class="setup-spec"><span class="setup-spec-icon">▸</span> 0 revisions</div>
         </div>
         <ul class="setup-features">
           <li>Church-ready template</li>
@@ -1158,54 +1557,54 @@
         </ul>
       </div>
 
-      <!-- STANDARD -->
+      <!-- ESSENTIAL -->
       <div class="setup-card">
-        <div class="setup-tier-label">Standard</div>
-        <h3>Standard Build</h3>
-        <div class="setup-price"><sup>$</sup>799</div>
-        <p class="setup-term">one-time · no contract</p>
+        <div class="setup-tier-label">Essential</div>
+        <h3>Essential</h3>
+        <div class="setup-price"><sup>$</sup>299</div>
+        <p class="setup-term">one-time setup fee</p>
         <div class="setup-specs">
-          <div class="setup-spec"><span class="setup-spec-icon">▸</span> Up to 20 pages</div>
+          <div class="setup-spec"><span class="setup-spec-icon">▸</span> Up to 15 pages</div>
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> 1 revision round</div>
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> ~1 week turnaround</div>
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> Advanced SEO setup</div>
         </div>
         <ul class="setup-features">
           <li>Everything in Simple</li>
-          <li>Content import (RSS required)</li>
           <li>Sermon archive setup</li>
           <li>Events + contact pages</li>
+          <li>Content import (RSS required)</li>
           <li>Launch support</li>
         </ul>
       </div>
 
-      <!-- PROFESSIONAL -->
+      <!-- TAILORED -->
       <div class="setup-card featured">
-        <div class="setup-tier-label">Professional</div>
-        <h3>Professional Build</h3>
-        <div class="setup-price"><sup>$</sup>1,499</div>
-        <p class="setup-term">one-time · no contract</p>
+        <div class="setup-tier-label">Tailored</div>
+        <h3>Tailored</h3>
+        <div class="setup-price"><sup>$</sup>799</div>
+        <p class="setup-term">one-time setup fee</p>
         <div class="setup-specs">
-          <div class="setup-spec"><span class="setup-spec-icon">▸</span> Up to 40 pages</div>
+          <div class="setup-spec"><span class="setup-spec-icon">▸</span> Up to 30 pages</div>
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> 2 revision rounds</div>
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> ~1–2 week turnaround</div>
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> Light customization</div>
         </div>
         <ul class="setup-features">
-          <li>Everything in Standard</li>
+          <li>Everything in Essential</li>
           <li>Lightly customized design</li>
           <li>Ministry department pages</li>
-          <li>Online campus integration</li>
           <li>Staff &amp; leadership pages</li>
+          <li>Online campus integration</li>
         </ul>
       </div>
 
-      <!-- PREMIUM -->
+      <!-- CUSTOM -->
       <div class="setup-card">
-        <div class="setup-tier-label">Premium</div>
-        <h3>Premium Build</h3>
-        <div class="setup-price"><sup>$</sup>2,499</div>
-        <p class="setup-term">one-time · no contract</p>
+        <div class="setup-tier-label">Custom</div>
+        <h3>Custom</h3>
+        <div class="setup-price"><sup>$</sup>999</div>
+        <p class="setup-term">one-time setup fee</p>
         <div class="setup-specs">
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> Up to 50 pages</div>
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> 3 revision rounds</div>
@@ -1213,7 +1612,7 @@
           <div class="setup-spec"><span class="setup-spec-icon">▸</span> Fully custom design</div>
         </div>
         <ul class="setup-features">
-          <li>Everything in Professional</li>
+          <li>Everything in Tailored</li>
           <li>Fully custom visual design</li>
           <li>Brand identity integration</li>
           <li>Priority turnaround</li>
@@ -1225,84 +1624,75 @@
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing">
+<!-- MONTHLY PLANS -->
+<section id="pricing" style="background: var(--navy);">
   <div class="container">
-    <div class="pricing-intro">
+    <div class="setup-section-head">
       <div>
-        <span class="section-label">Creative Support Partnership</span>
-        <h2 class="section-title">Ongoing monthly support for churches.</h2>
-        <div class="divider" style="margin-bottom: 0;"></div>
+        <span class="section-label" style="color:var(--gold-light);">Monthly Support Plans</span>
+        <h2 class="section-title" style="color:var(--white);">Stay supported after launch.</h2>
+        <div class="divider" style="margin-bottom:0;"></div>
       </div>
       <div>
-        <p>After launch, continue with a monthly creative support partnership. Your church gets a consistent creative partner for graphics, announcements, and website updates — every week, without the overhead of a full-time hire.</p>
+        <p style="color:rgba(255,255,255,0.55);">Pick a monthly plan to keep your website updated, your graphics consistent, and your church looking professional week after week. Pair with any setup fee above to get started.</p>
       </div>
     </div>
-    <div class="pricing-grid">
+    <div class="setup-grid" style="grid-template-columns: repeat(3,1fr); margin-top:0;">
 
-      <div class="pricing-card">
-        <div class="pricing-tier">Starter</div>
-        <h3>Starter Church</h3>
-        <p class="pricing-best">Under 100 members</p>
-        <div class="pricing-amount"><sup>$</sup>250</div>
-        <p class="pricing-period">per month</p>
-        <ul class="pricing-features">
-          <li>Sermon graphics</li>
-          <li>Event graphics</li>
-          <li>Website updates</li>
-          <li>Announcement graphics/videos</li>
+      <!-- BASIC -->
+      <div class="setup-card" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.1);">
+        <div class="setup-tier-label">Basic</div>
+        <h3 style="color:var(--white);">Basic</h3>
+        <div class="setup-price" style="color:var(--white);"><sup>$</sup>29</div>
+        <p class="setup-term">per month</p>
+        <div class="setup-specs" style="border-bottom-color:rgba(255,255,255,0.1);">
+          <div class="setup-spec" style="color:rgba(255,255,255,0.65);"><span class="setup-spec-icon">▸</span> Website hosting &amp; upkeep</div>
+          <div class="setup-spec" style="color:rgba(255,255,255,0.65);"><span class="setup-spec-icon">▸</span> Minor content updates</div>
+          <div class="setup-spec" style="color:rgba(255,255,255,0.65);"><span class="setup-spec-icon">▸</span> Email support</div>
+        </div>
+        <ul class="setup-features">
+          <li style="color:rgba(255,255,255,0.6);">Monthly website update</li>
+          <li style="color:rgba(255,255,255,0.6);">Security &amp; performance monitoring</li>
+          <li style="color:rgba(255,255,255,0.6);">Domain &amp; hosting support</li>
         </ul>
       </div>
 
-      <div class="pricing-card featured">
-        <div class="pricing-tier">Growing</div>
-        <h3>Growing Church</h3>
-        <p class="pricing-best">100–200 members</p>
-        <div class="pricing-amount"><sup>$</sup>300</div>
-        <p class="pricing-period">per month</p>
-        <ul class="pricing-features">
-          <li>Everything in Starter</li>
-          <li>Additional monthly design requests</li>
-          <li>Expanded event support</li>
+      <!-- PREMIUM -->
+      <div class="setup-card featured">
+        <div class="setup-tier-label">Premium</div>
+        <h3>Premium</h3>
+        <div class="setup-price"><sup>$</sup>49</div>
+        <p class="setup-term">per month</p>
+        <div class="setup-specs">
+          <div class="setup-spec"><span class="setup-spec-icon">▸</span> Everything in Basic</div>
+          <div class="setup-spec"><span class="setup-spec-icon">▸</span> Weekly content updates</div>
+          <div class="setup-spec"><span class="setup-spec-icon">▸</span> Sermon graphics (2/mo)</div>
+        </div>
+        <ul class="setup-features">
+          <li>Sermon &amp; event graphics</li>
+          <li>Social media graphics</li>
+          <li>Announcement slide updates</li>
+          <li>Priority email support</li>
         </ul>
       </div>
 
-      <div class="pricing-card">
-        <div class="pricing-tier">Established</div>
-        <h3>Established Church</h3>
-        <p class="pricing-best">200–300 members</p>
-        <div class="pricing-amount"><sup>$</sup>400</div>
-        <p class="pricing-period">per month</p>
-        <ul class="pricing-features">
-          <li>Priority support</li>
-          <li>More frequent website updates</li>
-          <li>Increased design capacity</li>
-        </ul>
-      </div>
-
-      <div class="pricing-card">
-        <div class="pricing-tier">Impact</div>
-        <h3>Impact Church</h3>
-        <p class="pricing-best">300–400 members</p>
-        <div class="pricing-amount"><sup>$</sup>500</div>
-        <p class="pricing-period">per month</p>
-        <ul class="pricing-features">
-          <li>Higher-volume creative support</li>
-          <li>Ongoing campaign graphics</li>
-          <li>Expanded announcement support</li>
-        </ul>
-      </div>
-
-      <div class="pricing-card">
-        <div class="pricing-tier">Community</div>
-        <h3>Community Church</h3>
-        <p class="pricing-best">400–500 members</p>
-        <div class="pricing-amount"><sup>$</sup>600</div>
-        <p class="pricing-period">per month</p>
-        <ul class="pricing-features">
-          <li>Full creative partnership</li>
-          <li>Priority turnaround</li>
-          <li>Multi-event &amp; ministry support</li>
+      <!-- ULTIMATE -->
+      <div class="setup-card" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.1);">
+        <div class="setup-tier-label">Ultimate</div>
+        <h3 style="color:var(--white);">Ultimate</h3>
+        <div class="setup-price" style="color:var(--white);"><sup>$</sup>199</div>
+        <p class="setup-term">per month</p>
+        <div class="setup-specs" style="border-bottom-color:rgba(255,255,255,0.1);">
+          <div class="setup-spec" style="color:rgba(255,255,255,0.65);"><span class="setup-spec-icon">▸</span> Everything in Premium</div>
+          <div class="setup-spec" style="color:rgba(255,255,255,0.65);"><span class="setup-spec-icon">▸</span> Full creative partnership</div>
+          <div class="setup-spec" style="color:rgba(255,255,255,0.65);"><span class="setup-spec-icon">▸</span> Unlimited requests</div>
+        </div>
+        <ul class="setup-features">
+          <li style="color:rgba(255,255,255,0.6);">Unlimited design requests</li>
+          <li style="color:rgba(255,255,255,0.6);">Announcement videos</li>
+          <li style="color:rgba(255,255,255,0.6);">Campaign &amp; series graphics</li>
+          <li style="color:rgba(255,255,255,0.6);">Priority turnaround</li>
+          <li style="color:rgba(255,255,255,0.6);">Dedicated support</li>
         </ul>
       </div>
 
@@ -1322,7 +1712,7 @@
     <div class="addons-grid">
 
       <div class="addon-card">
-        <span class="addon-icon">🎨</span>
+        <i data-lucide="palette" class="addon-icon"></i>
         <h3>Media &amp; Graphics</h3>
         <p>Consistent, professional creative assets every week — so your church always looks ready on Sunday and beyond.</p>
         <div class="addon-tags">
@@ -1335,7 +1725,7 @@
       </div>
 
       <div class="addon-card">
-        <span class="addon-icon">⚙️</span>
+        <i data-lucide="workflow" class="addon-icon"></i>
         <h3>Systems Integration</h3>
         <p>Connect your website to the tools your church already uses — giving, church management, events, and communications, all working together.</p>
         <div class="addon-tags">
@@ -1348,7 +1738,7 @@
       </div>
 
       <div class="addon-card">
-        <span class="addon-icon">🤖</span>
+        <i data-lucide="sparkles" class="addon-icon"></i>
         <h3>AI for Your Church</h3>
         <p>Practical AI tools that help your church communicate faster, follow up with visitors, and automate the behind-the-scenes work so your team can focus on people.</p>
         <div class="addon-tags">
@@ -1414,6 +1804,85 @@
   </div>
 </section>
 
+<!-- CONSULTING -->
+<section id="consulting">
+  <div class="container">
+    <div class="consulting-intro">
+      <span class="section-label">Extended Services</span>
+      <h2 class="section-title">Fractional Leadership &amp; Ministry Consulting.</h2>
+      <div class="divider" style="margin-bottom:0;"></div>
+      <p>For churches that need more than a website — OneKreative offers embedded fractional leadership and strategic consulting for ministries that are revamping, relaunching, or building new services and workflows from the ground up. You get experienced, mission-focused support without the cost of a full-time hire.</p>
+    </div>
+
+    <div class="consulting-services">
+
+      <div class="consult-card">
+        <span class="consult-card-icon">🏛️</span>
+        <h3>Fractional Digital Director</h3>
+        <p>Embedded part-time leadership for your digital ministry. Strategy, oversight, and direction — without adding a full-time staff member. Ideal for churches that need a steady hand guiding communications, digital tools, and online engagement.</p>
+      </div>
+
+      <div class="consult-card">
+        <span class="consult-card-icon">🔄</span>
+        <h3>Church Revamp &amp; Relaunch</h3>
+        <p>A full audit and rebuild of your church's digital presence, communications infrastructure, and ministry brand. We assess what's working, what's not, and build a clear path to a stronger, more effective public presence.</p>
+      </div>
+
+      <div class="consult-card">
+        <span class="consult-card-icon">⚡</span>
+        <h3>Workflow &amp; Systems Development</h3>
+        <p>Build the operational backbone your ministry needs. From communication workflows and volunteer systems to digital discipleship pipelines — we design the systems that let your team run consistently and sustainably.</p>
+      </div>
+
+    </div>
+
+    <div class="consulting-lower">
+
+      <div>
+        <span class="section-label">How It Works</span>
+        <h2 class="section-title" style="font-size:1.8rem; margin-bottom: 36px;">Three steps from stuck to moving.</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-num">01</div>
+            <div class="process-step-body">
+              <h4>Church Assessment</h4>
+              <p>We start with a comprehensive review of your church's current structure, digital presence, goals, and pain points — giving us a clear picture of where you are and where you want to go.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-num">02</div>
+            <div class="process-step-body">
+              <h4>Strategy &amp; Roadmap</h4>
+              <p>We build a custom plan — covering digital strategy, communication systems, operational workflows, and ministry priorities — aligned with your vision and your team's capacity.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-num">03</div>
+            <div class="process-step-body">
+              <h4>Implementation &amp; Accountability</h4>
+              <p>We work alongside your team to execute — managing projects, training staff, and holding the process accountable with regular check-ins and clear milestones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="consulting-fit">
+        <h3>Is this right for your church?</h3>
+        <p>This service is built for ministry teams that are serious about growth and ready to invest in getting there.</p>
+        <ul class="fit-list">
+          <li>Churches in growth phases that need organizational and digital leadership</li>
+          <li>Senior pastors who want to offload communications and operations to focus on ministry</li>
+          <li>Churches in transition — relaunching, rebranding, or planting new ministry expressions</li>
+          <li>Church boards looking for a strategic partner to guide digital, comms, and workflow decisions</li>
+          <li>Ministries building new services, online campus environments, or discipleship pipelines</li>
+        </ul>
+        <a href="mailto:hello@onekreative.co?subject=Ministry Consulting Inquiry" class="btn-primary">Book a Strategy Call</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="container">
@@ -1458,5 +1927,7 @@
   <p>© 2026 OneKreative. Church websites &amp; creative support.</p>
 </footer>
 
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>
