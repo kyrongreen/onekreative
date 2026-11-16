@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>St. Peter's UMC Austin — Events</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C8922A;
+  --gold-light: #E5B84A;
+  --deep-red: #8B1A1A;
+  --crimson: #A62020;
+  --cream: #F8F3EC;
+  --warm-white: #FDFAF6;
+  --charcoal: #1C1C1C;
+  --slate: #3A3A3A;
+  --muted: #7A7068;
+  --section-bg: #F2EAE0;
+  --dark-bg: #111111;
+  --border: rgba(200,146,42,0.3);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #fff; color: var(--charcoal); }
+
+/* NAV */
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px; height: 80px;
+  background: rgba(255,255,255,0.97);
+  border-bottom: 1px solid rgba(200,146,42,0.3);
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+.nav-logo { display: flex; align-items: center; gap: 14px; }
+.nav-logo .cross { width: 36px; height: 36px; position: relative; }
+.nav-logo .cross::before, .nav-logo .cross::after { content: ''; position: absolute; background: var(--gold); border-radius: 2px; }
+.nav-logo .cross::before { width: 4px; height: 100%; left: 50%; transform: translateX(-50%); }
+.nav-logo .cross::after { width: 100%; height: 4px; top: 30%; transform: translateY(-50%); }
+.nav-logo-text { line-height: 1.1; }
+.nav-logo-text .church-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--charcoal); }
+.nav-logo-text .church-sub { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; color: var(--slate); }
+.nav-links a.active { color: var(--gold); }
+.nav-cta { background: var(--gold); color: #fff !important; padding: 10px 24px; border-radius: 2px; font-weight: 600 !important; }
+
+/* PAGE HEADER */
+.page-header { background: var(--charcoal); padding: 80px 64px; }
+.page-header-inner { max-width: 1440px; margin: 0 auto; }
+.breadcrumb { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 20px; }
+.page-header h1 { font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; color: #fff; margin-bottom: 20px; }
+.page-header-sub { font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.5); max-width: 560px; }
+
+/* EVENTS SECTION */
+.events-section { background: var(--warm-white); padding: 80px 0 120px; }
+.events-inner { max-width: 1440px; margin: 0 auto; padding: 0 64px; }
+
+/* CALENDAR */
+.calendar-wrap { background: #fff; border-radius: 4px; border: 1px solid rgba(0,0,0,0.08); overflow: hidden; margin-bottom: 72px; }
+.calendar-header { background: var(--charcoal); padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; }
+.calendar-month { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #fff; }
+.calendar-nav { display: flex; gap: 12px; }
+.cal-nav-btn { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; background: transparent; color: rgba(255,255,255,0.6); font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+.cal-day-header { background: rgba(0,0,0,0.04); padding: 12px; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.cal-cell { min-height: 90px; padding: 10px; border-right: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); vertical-align: top; position: relative; }
+.cal-cell:nth-child(7n) { border-right: none; }
+.cal-num { font-size: 13px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.cal-cell.today .cal-num { background: var(--gold); color: #fff; }
+.cal-cell.other-month .cal-num { color: rgba(0,0,0,0.2); }
+.cal-event { font-size: 9px; font-weight: 600; padding: 3px 6px; border-radius: 2px; margin-bottom: 3px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal-event.gold { background: rgba(200,146,42,0.15); color: var(--gold); }
+.cal-event.red { background: rgba(139,26,26,0.12); color: var(--deep-red); }
+
+/* UPCOMING LABEL */
+.upcoming-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; }
+
+/* EVENT CARDS */
+.events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.event-card { background: #fff; border-radius: 4px; overflow: hidden; border: 1px solid rgba(0,0,0,0.07); display: flex; flex-direction: column; }
+.event-card-header { padding: 24px 24px 0; display: flex; align-items: flex-start; gap: 16px; }
+.event-date-badge { background: var(--charcoal); border-radius: 4px; padding: 12px 14px; text-align: center; min-width: 58px; flex-shrink: 0; }
+.event-date-badge .month { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+.event-date-badge .day { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: #fff; line-height: 1; }
+.event-title-wrap h3 { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--charcoal); margin-bottom: 6px; line-height: 1.2; }
+.event-time { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.event-card-body { padding: 16px 24px 24px; flex: 1; }
+.event-desc { font-size: 13px; line-height: 1.7; color: var(--muted); margin-bottom: 16px; }
+.event-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(200,146,42,0.3); padding: 5px 12px; border-radius: 100px; }
+
+/* FOOTER */
+footer { background: #0D0D0D; padding: 80px 64px 40px; position: relative; }
+footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--deep-red) 0%, var(--gold) 50%, var(--deep-red) 100%); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+.footer-brand .church-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+.footer-brand p { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.4); max-width: 280px; }
+.footer-address { margin-top: 24px; font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.7; }
+.footer-col h4 { font-size: 10px; letter-spacing: 3px; font-weight: 700; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; }
+.footer-col ul li a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; }
+.footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.25); }
+.footer-socials { display: flex; gap: 16px; }
+.social-icon { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: rgba(255,255,255,0.4); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="cross"></div>
+    <div class="nav-logo-text">
+      <div class="church-name">St. Peter's UMC</div>
+      <div class="church-sub">Austin, Texas · Est. 1866</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="sermons.html">Sermons</a></li>
+    <li><a href="events.html" class="active">Events</a></li>
+    <li><a href="give.html">Give</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="contact.html" class="nav-cta">Plan Your Visit</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">St. Peter's UMC / Events</div>
+    <h1>Come Together.</h1>
+    <p class="page-header-sub">From Sunday worship to community outreach, there's always something happening at St. Peter's. Find your place in our calendar of life and faith.</p>
+  </div>
+</div>
+
+<!-- EVENTS SECTION -->
+<section class="events-section">
+  <div class="events-inner">
+
+    <!-- CALENDAR -->
+    <div class="calendar-wrap">
+      <div class="calendar-header">
+        <div class="calendar-month">September 2026</div>
+        <div class="calendar-nav">
+          <button class="cal-nav-btn">‹</button>
+          <button class="cal-nav-btn">›</button>
+        </div>
+      </div>
+      <div class="calendar-grid">
+        <!-- Day headers -->
+        <div class="cal-day-header">Sun</div>
+        <div class="cal-day-header">Mon</div>
+        <div class="cal-day-header">Tue</div>
+        <div class="cal-day-header">Wed</div>
+        <div class="cal-day-header">Thu</div>
+        <div class="cal-day-header">Fri</div>
+        <div class="cal-day-header">Sat</div>
+
+        <!-- Week 1: Aug 30 – Sep 5 -->
+        <div class="cal-cell other-month"><div class="cal-num">30</div></div>
+        <div class="cal-cell other-month"><div class="cal-num">31</div></div>
+        <div class="cal-cell"><div class="cal-num">1</div></div>
+        <div class="cal-cell"><div class="cal-num">2</div></div>
+        <div class="cal-cell"><div class="cal-num">3</div></div>
+        <div class="cal-cell">
+          <div class="cal-num">4</div>
+          <span class="cal-event red">Bible Study</span>
+        </div>
+        <div class="cal-cell"><div class="cal-num">5</div></div>
+
+        <!-- Week 2: Sep 6–12 -->
+        <div class="cal-cell"><div class="cal-num">6</div></div>
+        <div class="cal-cell"><div class="cal-num">7</div></div>
+        <div class="cal-cell">
+          <div class="cal-num">8</div>
+          <span class="cal-event gold">Sunday Worship</span>
+        </div>
+        <div class="cal-cell"><div class="cal-num">9</div></div>
+        <div class="cal-cell"><div class="cal-num">10</div></div>
+        <div class="cal-cell">
+          <div class="cal-num">11</div>
+          <span class="cal-event red">Bible Study</span>
+        </div>
+        <div class="cal-cell"><div class="cal-num">12</div></div>
+
+        <!-- Week 3: Sep 13–19 -->
+        <div class="cal-cell"><div class="cal-num">13</div></div>
+        <div class="cal-cell"><div class="cal-num">14</div></div>
+        <div class="cal-cell today">
+          <div class="cal-num">15</div>
+          <span class="cal-event gold">Sunday Worship</span>
+        </div>
+        <div class="cal-cell"><div class="cal-num">16</div></div>
+        <div class="cal-cell"><div class="cal-num">17</div></div>
+        <div class="cal-cell">
+          <div class="cal-num">18</div>
+          <span class="cal-event red">Prayer Night</span>
+        </div>
+        <div class="cal-cell"><div class="cal-num">19</div></div>
+
+        <!-- Week 4: Sep 20–26 -->
+        <div class="cal-cell"><div class="cal-num">20</div></div>
+        <div class="cal-cell">
+          <div class="cal-num">21</div>
+          <span class="cal-event gold">Heritage Sunday</span>
+        </div>
+        <div class="cal-cell">
+          <div class="cal-num">22</div>
+          <span class="cal-event gold">Heritage Sunday</span>
+        </div>
+        <div class="cal-cell"><div class="cal-num">23</div></div>
+        <div class="cal-cell"><div class="cal-num">24</div></div>
+        <div class="cal-cell">
+          <div class="cal-num">25</div>
+          <span class="cal-event red">Bible Study</span>
+        </div>
+        <div class="cal-cell"><div class="cal-num">26</div></div>
+
+        <!-- Week 5: Sep 27 – Oct 3 -->
+        <div class="cal-cell">
+          <div class="cal-num">27</div>
+          <span class="cal-event red">Food Pantry</span>
+        </div>
+        <div class="cal-cell"><div class="cal-num">28</div></div>
+        <div class="cal-cell">
+          <div class="cal-num">29</div>
+          <span class="cal-event gold">Sunday Worship</span>
+        </div>
+        <div class="cal-cell"><div class="cal-num">30</div></div>
+        <div class="cal-cell other-month"><div class="cal-num">1</div></div>
+        <div class="cal-cell other-month"><div class="cal-num">2</div></div>
+        <div class="cal-cell other-month"><div class="cal-num">3</div></div>
+      </div>
+    </div>
+
+    <!-- UPCOMING EVENTS -->
+    <div class="upcoming-eyebrow">Upcoming Events</div>
+    <div class="events-grid">
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-date-badge">
+            <div class="month">Sep</div>
+            <div class="day">21</div>
+          </div>
+          <div class="event-title-wrap">
+            <h3>Heritage Sunday</h3>
+            <div class="event-time">10:30 AM · Sanctuary</div>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <p class="event-desc">A landmark worship service celebrating 160 years of St. Peter's UMC. Join us for special music, guest speakers, historical reflections, and a community reception after service.</p>
+          <span class="event-tag">Special Service</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-date-badge">
+            <div class="month">Sep</div>
+            <div class="day">27</div>
+          </div>
+          <div class="event-title-wrap">
+            <h3>Food Pantry Day</h3>
+            <div class="event-time">9:00 AM · Fellowship Hall</div>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <p class="event-desc">Our monthly community food distribution serving hundreds of East Austin families. Volunteers are needed — bring your hands and your heart.</p>
+          <span class="event-tag">Community</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-date-badge">
+            <div class="month">Oct</div>
+            <div class="day">5</div>
+          </div>
+          <div class="event-title-wrap">
+            <h3>Youth Revival</h3>
+            <div class="event-time">6:00 PM · Sanctuary</div>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <p class="event-desc">A powerful weekend of worship, teaching, and fellowship designed specifically for teens and young adults. Guest speakers and live worship team included.</p>
+          <span class="event-tag">Youth</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-date-badge">
+            <div class="month">Oct</div>
+            <div class="day">12</div>
+          </div>
+          <div class="event-title-wrap">
+            <h3>Fall Festival</h3>
+            <div class="event-time">2:00 PM · Church Grounds</div>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <p class="event-desc">An annual community celebration featuring family games, food, music, and fellowship. Open to the whole East Austin community — bring your neighbors!</p>
+          <span class="event-tag">Family</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-date-badge">
+            <div class="month">Oct</div>
+            <div class="day">19</div>
+          </div>
+          <div class="event-title-wrap">
+            <h3>Choir Concert</h3>
+            <div class="event-time">4:00 PM · Sanctuary</div>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <p class="event-desc">The St. Peter's Mass Choir presents an evening of sacred gospel music. An uplifting concert of praise open to the entire community — free admission.</p>
+          <span class="event-tag">Music</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-date-badge">
+            <div class="month">Nov</div>
+            <div class="day">27</div>
+          </div>
+          <div class="event-title-wrap">
+            <h3>Thanksgiving Service</h3>
+            <div class="event-time">10:00 AM · Sanctuary</div>
+          </div>
+        </div>
+        <div class="event-card-body">
+          <p class="event-desc">A special Thanksgiving morning worship service of gratitude, praise, and reflection. Join your St. Peter's family in giving thanks for God's faithfulness.</p>
+          <span class="event-tag">Worship</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="church-name">St. Peter's United Methodist Church</div>
+      <p>A fellowship of believers rooted in 160 years of faith, resilience, and community love in the heart of Austin, Texas.</p>
+      <div class="footer-address">4509 Springdale Rd<br>Austin, TX 78723<br>(512) 926-1686</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="sermons.html">Sermons</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="give.html">Give</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ministries</h4>
+      <ul>
+        <li><a href="#">Sunday Worship</a></li>
+        <li><a href="#">Children &amp; Youth</a></li>
+        <li><a href="#">Mass Choir</a></li>
+        <li><a href="#">Community Outreach</a></li>
+        <li><a href="#">Senior Ministry</a></li>
+        <li><a href="#">Men's &amp; Women's</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Worship Times</h4>
+      <ul>
+        <li><a href="#">Sunday 8:00 AM</a></li>
+        <li><a href="#">Sunday 10:30 AM</a></li>
+        <li><a href="#">Wednesday 7:00 PM</a></li>
+        <li><a href="#">Bible Study (Fri)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 St. Peter's United Methodist Church · Austin, TX · All rights reserved.</p>
+    <div class="footer-socials">
+      <div class="social-icon">f</div>
+      <div class="social-icon">ig</div>
+      <div class="social-icon">yt</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

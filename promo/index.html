@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Church Website Makeover — $1,000 | OneKreative</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:    #0A3D2B;
+      --green-lt: #0D5038;
+      --lime:     #CCFF00;
+      --coral:    #FF4B3E;
+      --ink:      #0A0A08;
+      --ink-mid:  #1C1C1A;
+      --muted:    #6B6B65;
+      --border:   #E2DFD6;
+      --bg:       #F5F3ED;
+      --white:    #FFFEFB;
+      --cream:    #F0EDE4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245,243,237,0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-brand span { color: var(--coral); }
+    .nav-cta {
+      background: var(--green);
+      color: var(--lime);
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--green-lt); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--green);
+      color: var(--white);
+      padding: 100px 40px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(204,255,0,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(204,255,0,0.12);
+      border: 1px solid rgba(204,255,0,0.25);
+      color: var(--lime);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+    }
+    .hero-eyebrow::before {
+      content: '✦';
+      font-size: 0.6rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      max-width: 860px;
+      margin: 0 auto 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--lime);
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,254,251,0.72);
+      max-width: 580px;
+      margin: 0 auto 48px;
+      line-height: 1.65;
+    }
+    .hero-price-badge {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 10px;
+      background: var(--lime);
+      color: var(--ink);
+      padding: 16px 32px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .hero-price-badge .big { font-size: 2.2rem; font-weight: 900; letter-spacing: -1px; }
+    .hero-price-badge .plus { font-size: 1rem; font-weight: 600; }
+    .hero-price-badge .monthly { font-size: 0.95rem; font-weight: 700; }
+    .hero-price-sub {
+      font-size: 0.78rem;
+      color: rgba(255,254,251,0.5);
+      margin-bottom: 48px;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--lime);
+      color: var(--ink);
+      padding: 16px 36px;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(204,255,0,0.3);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,254,251,0.8);
+      padding: 16px 36px;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,254,251,0.2);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,254,251,0.5);
+      color: var(--white);
+    }
+
+    /* ─── PAIN SECTION ─── */
+    .pain {
+      padding: 96px 40px;
+      max-width: 1080px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 64px;
+    }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .pain-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      text-align: left;
+    }
+    .pain-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--cream);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+    .pain-card h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .pain-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── WHAT'S INCLUDED ─── */
+    .included {
+      background: var(--green);
+      color: var(--white);
+      padding: 96px 40px;
+    }
+    .included-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .included .section-label { color: rgba(204,255,0,0.6); }
+    .included .section-title { color: var(--white); }
+    .included .section-title em { font-style: normal; color: var(--lime); }
+    .included .section-sub { color: rgba(255,254,251,0.6); }
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .inc-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .inc-check {
+      width: 28px;
+      height: 28px;
+      background: var(--lime);
+      color: var(--ink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .inc-text h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .inc-text p {
+      font-size: 0.8rem;
+      color: rgba(255,254,251,0.55);
+      line-height: 1.5;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .process {
+      padding: 96px 40px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 56px;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 16px;
+    }
+    .step-num {
+      width: 56px;
+      height: 56px;
+      background: var(--green);
+      color: var(--lime);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 900;
+      margin: 0 auto 20px;
+    }
+    .step h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .step p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .step-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: var(--lime);
+      color: var(--ink);
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing {
+      background: var(--cream);
+      padding: 96px 40px;
+    }
+    .pricing-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .price-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 36px;
+      text-align: left;
+      position: relative;
+    }
+    .price-card.featured {
+      border-color: var(--green);
+      background: var(--green);
+      color: var(--white);
+    }
+    .price-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--lime);
+      color: var(--ink);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .price-card .price-amount {
+      font-size: 3.2rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .price-card.featured .price-amount { color: var(--lime); }
+    .price-period {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .price-card.featured .price-period { color: rgba(255,254,251,0.5); }
+    .price-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .price-card.featured p { color: rgba(255,254,251,0.7); }
+    .price-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+    .price-card.featured .price-divider { background: rgba(255,255,255,0.12); }
+    .price-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .price-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+    }
+    .price-card.featured .price-list li { color: rgba(255,254,251,0.85); }
+    .price-list li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 900;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .price-card.featured .price-list li::before { color: var(--lime); }
+    .price-btn {
+      display: block;
+      text-align: center;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .price-btn:hover { transform: translateY(-2px); }
+    .price-btn-outline {
+      border: 1.5px solid var(--border);
+      color: var(--ink);
+    }
+    .price-btn-lime {
+      background: var(--lime);
+      color: var(--ink);
+    }
+
+    /* ─── FAQ ─── */
+    .faq {
+      padding: 96px 40px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .faq-list {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      cursor: pointer;
+      gap: 16px;
+    }
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 400;
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.25s;
+      color: var(--ink);
+    }
+    .faq-item.open .faq-icon {
+      background: var(--green);
+      color: var(--lime);
+      transform: rotate(45deg);
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s;
+    }
+    .faq-a-inner {
+      padding: 0 0 22px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      background: var(--ink);
+      color: var(--white);
+      padding: 96px 40px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+    .cta-section h2 em { font-style: normal; color: var(--lime); }
+    .cta-section p {
+      font-size: 1rem;
+      color: rgba(255,254,251,0.55);
+      max-width: 480px;
+      margin: 0 auto 48px;
+    }
+
+    /* ─── CONTACT FORM ─── */
+    .contact-form {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px;
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form-group.full { grid-column: span 2; }
+    label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.3px;
+    }
+    input, select, textarea {
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--green);
+    }
+    textarea { resize: vertical; min-height: 120px; }
+    select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B65' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+    .form-submit {
+      width: 100%;
+      background: var(--green);
+      color: var(--lime);
+      border: none;
+      padding: 16px;
+      border-radius: 100px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 8px;
+    }
+    .form-submit:hover {
+      background: var(--green-lt);
+      transform: translateY(-2px);
+    }
+    .form-note {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 14px;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .form-success .check-circle {
+      width: 64px;
+      height: 64px;
+      background: var(--lime);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin: 0 auto 20px;
+    }
+    .form-success h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .form-success p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink-mid);
+      color: rgba(255,254,251,0.45);
+      text-align: center;
+      padding: 28px 40px;
+      font-size: 0.78rem;
+    }
+    footer a { color: rgba(255,254,251,0.55); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 40px;
+      text-align: center;
+    }
+    .trust-bar-inner {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-mid);
+    }
+    .trust-item .t-icon {
+      font-size: 1.1rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 72px 24px 60px; }
+      .pain, .process, .faq { padding: 64px 24px; }
+      .included { padding: 64px 24px; }
+      .pricing { padding: 64px 24px; }
+      .cta-section { padding: 64px 24px; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .included-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .process-steps::before { display: none; }
+      .pricing-cards { grid-template-columns: 1fr; }
+      .contact-form { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: span 1; }
+      .trust-bar-inner { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://onekreative.co" class="nav-brand">One<span>K</span>reative</a>
+    <a href="#contact" class="nav-cta">Get Your Site →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">For Churches Under 150 Members</div>
+    <h1>Your Church Deserves a<br /><em>Website That Works.</em></h1>
+    <p class="hero-sub">We build fast, beautiful, fully set-up church websites in under 2 weeks — so your community can find you, trust you, and show up.</p>
+    <div class="hero-price-badge">
+      <span class="big">$1,000</span>
+      <span class="plus">+</span>
+      <span class="monthly">$35/mo maintenance</span>
+    </div>
+    <p class="hero-price-sub">One-time setup · No hidden fees · Everything included</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Claim Your Spot →</a>
+      <a href="#included" class="btn-ghost">See What's Included</a>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <div class="trust-item"><span class="t-icon">⚡</span> Ready in under 2 weeks</div>
+      <div class="trust-item"><span class="t-icon">📱</span> Mobile-friendly by default</div>
+      <div class="trust-item"><span class="t-icon">🔒</span> Hosting + domain included</div>
+      <div class="trust-item"><span class="t-icon">✍️</span> We write your content</div>
+      <div class="trust-item"><span class="t-icon">🛠️</span> Ongoing support for $35/mo</div>
+    </div>
+  </div>
+
+  <!-- PAIN SECTION -->
+  <section class="pain">
+    <p class="section-label">Sound familiar?</p>
+    <h2 class="section-title">Small churches deserve more<br />than an outdated template.</h2>
+    <p class="section-sub">Most churches under 150 members are working with websites that were built years ago — or not built at all.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">📋</div>
+        <h3>"Our website is embarrassing."</h3>
+        <p>The design is outdated, nothing works on mobile, and you're afraid to send people there — so you just don't.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">💸</div>
+        <h3>"We can't afford a real agency."</h3>
+        <p>Most agencies quote $5,000–$15,000 for a church website. That money could go toward ministry, not a website.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🕐</div>
+        <h3>"We don't have time to manage it."</h3>
+        <p>Pastors and volunteers already wear too many hats. You need something that runs itself — not another project.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
+  <section class="included" id="included">
+    <div class="included-inner">
+      <p class="section-label">Everything. No surprises.</p>
+      <h2 class="section-title">The full setup.<br /><em>Done for you.</em></h2>
+      <p class="section-sub" style="text-align:center;">From blank canvas to live site — we handle every piece of the puzzle.</p>
+      <div class="included-grid">
+        <div class="inc-item">
+          <div class="inc-check">✓</div>
+          <div class="inc-text">
+            <h4>Custom Website Design</h4>
+            <p>A clean, modern design tailored to your church's identity — not a generic template.</p>
+          </div>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check">✓</div>
+          <div class="inc-text">
+            <h4>Copywriting &amp; Content</h4>
+            <p>We write your About page, Service times, Beliefs, Sermons section, and more. You just review and approve.</p>
+          </div>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check">✓</div>
+          <div class="inc-text">
+            <h4>Domain Setup</h4>
+            <p>We help you register or transfer your domain and connect everything properly — no tech headaches.</p>
+          </div>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check">✓</div>
+          <div class="inc-text">
+            <h4>Hosting Configuration</h4>
+            <p>Your site is hosted on fast, reliable infrastructure — included in the $35/month maintenance plan.</p>
+          </div>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check">✓</div>
+          <div class="inc-text">
+            <h4>Mobile-Responsive Build</h4>
+            <p>Looks great on every device — phone, tablet, and desktop — right from day one.</p>
+          </div>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check">✓</div>
+          <div class="inc-text">
+            <h4>Contact &amp; Connect Forms</h4>
+            <p>Give people a way to reach your pastor, request prayer, or ask about your services — all set up and working.</p>
+          </div>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check">✓</div>
+          <div class="inc-text">
+            <h4>Google Maps &amp; Directions</h4>
+            <p>New visitors can find you easily with a built-in map, address, and service time display.</p>
+          </div>
+        </div>
+        <div class="inc-item">
+          <div class="inc-check">✓</div>
+          <div class="inc-text">
+            <h4>Go-Live Support</h4>
+            <p>We walk you through the site on launch day, answer your questions, and make sure everything is right.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="process">
+    <p class="section-label" style="text-align:center;">Simple process</p>
+    <h2 class="section-title" style="text-align:center;">From kickoff to live site<br />in under 2 weeks.</h2>
+    <p class="section-sub" style="text-align:center;">No endless back-and-forth. We keep things moving so you can stay focused on ministry.</p>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-tag">Day 1–2</div>
+        <h4>Kickoff Call</h4>
+        <p>We learn about your church, vision, and needs. You hand us your photos, logo, and a few key details.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-tag">Day 3–7</div>
+        <h4>Design &amp; Build</h4>
+        <p>We design and build your full site — and write all the copy. You'll see a draft by end of week one.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-tag">Day 8–10</div>
+        <h4>Review &amp; Revisions</h4>
+        <p>We share the draft, you give feedback, and we make changes until it's exactly right.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-tag">Day 11–14</div>
+        <h4>Launch 🎉</h4>
+        <p>Your site goes live. We walk you through it together and make sure you're confident using it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing">
+    <div class="pricing-inner">
+      <p class="section-label">Simple, honest pricing</p>
+      <h2 class="section-title">Built for the budget of<br />a small congregation.</h2>
+      <p class="section-sub">No upsells, no contracts, no surprises. Just a clear price for a complete result.</p>
+      <div class="pricing-cards">
+        <div class="price-card">
+          <div class="price-badge">One-Time</div>
+          <div class="price-amount">$1,000</div>
+          <div class="price-period">Complete website setup</div>
+          <p>Everything you need to go from zero to a fully live, professional church website.</p>
+          <div class="price-divider"></div>
+          <ul class="price-list">
+            <li>Custom design (not a template)</li>
+            <li>All content written for you</li>
+            <li>Domain + hosting setup</li>
+            <li>Mobile-responsive build</li>
+            <li>Contact forms configured</li>
+            <li>Google Maps integration</li>
+            <li>Go-live walkthrough</li>
+          </ul>
+          <a href="#contact" class="price-btn price-btn-outline">Get Started →</a>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge">Monthly Add-On</div>
+          <div class="price-amount">$35<span style="font-size:1.4rem; letter-spacing:0;">/mo</span></div>
+          <div class="price-period">Ongoing maintenance & hosting</div>
+          <p>Keep your site fast, secure, and updated — without lifting a finger. Cancel anytime.</p>
+          <div class="price-divider"></div>
+          <ul class="price-list">
+            <li>Website hosting included</li>
+            <li>Security &amp; software updates</li>
+            <li>Monthly content updates (up to 2)</li>
+            <li>Priority email support</li>
+            <li>Uptime monitoring</li>
+            <li>Annual design refresh</li>
+            <li>No long-term contract</li>
+          </ul>
+          <a href="#contact" class="price-btn price-btn-lime">Add Maintenance →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <p class="section-label" style="text-align:center;">Questions</p>
+    <h2 class="section-title" style="text-align:center;">Honest answers to the<br />questions pastors ask.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>What do you need from us to get started?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Just a few basics: your church name, logo (if you have one), a few photos of your congregation or building, and your service times and address. We'll handle the rest — including writing all the copy for your pages.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Is $1,000 all in, or are there extra costs?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">The $1,000 covers the full design and build. The $35/month covers hosting and ongoing maintenance. The only additional cost you may have is your domain name (~$15–20/year through a registrar like Namecheap or GoDaddy), which we'll help you set up.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>What if we don't have a logo or photos?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">No problem. We can use high-quality stock photography that fits your church's feel. If you'd like a logo designed, we can include that as an add-on — just ask during your kickoff call.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Can we update the site ourselves after launch?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Yes. We'll show you how to make basic updates during the go-live walkthrough. If you'd rather not deal with it, that's exactly what the $35/month plan is for — just email us your changes and we'll handle it within 48 hours.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Do you only work with churches of a specific denomination?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Not at all. We've worked with Baptist, Pentecostal, non-denominational, and community churches. As long as your congregation is under 150 members and your heart is in the right place, we'd love to serve you.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>What if we're not happy with the result?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">We revise until you're genuinely happy. Our process includes a dedicated review round where you can give all the feedback you need. We don't consider the project done until you do.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + FORM -->
+  <section class="cta-section" id="contact">
+    <h2>Ready to give your church<br />a home on the internet?</h2>
+    <p>Fill out the form below and we'll reach out within 24 hours to schedule your free kickoff call.</p>
+    <div class="contact-form">
+      <div class="form-success" id="formSuccess">
+        <div class="check-circle">✓</div>
+        <h3>You're on the list.</h3>
+        <p>We'll be in touch within 24 hours to schedule your kickoff call. We're excited to serve your church.</p>
+      </div>
+      <form id="churchForm" action="https://formspree.io/f/mbdedarg" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">Your Name</label>
+            <input type="text" id="fname" name="name" placeholder="Pastor James" required />
+          </div>
+          <div class="form-group">
+            <label for="femail">Email Address</label>
+            <input type="email" id="femail" name="email" placeholder="pastor@yourchurch.org" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fchurch">Church Name</label>
+            <input type="text" id="fchurch" name="church_name" placeholder="Grace Community Church" required />
+          </div>
+          <div class="form-group">
+            <label for="fsize">Congregation Size</label>
+            <select id="fsize" name="congregation_size">
+              <option value="">Select range</option>
+              <option value="under-30">Under 30</option>
+              <option value="30-75">30 – 75</option>
+              <option value="75-150">75 – 150</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label for="fwebsite">Current Website (if any)</label>
+          <input type="url" id="fwebsite" name="current_website" placeholder="https://yourchurch.com or leave blank" />
+        </div>
+        <div class="form-group full">
+          <label for="fmessage">Anything you'd like us to know?</label>
+          <textarea id="fmessage" name="message" placeholder="Tell us about your church, what you're hoping the website will do, or any questions you have..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send My Request →</button>
+        <p class="form-note">No payment required to reach out. We'll talk first, then decide together.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 OneKreative · <a href="https://onekreative.co">onekreative.co</a> · <a href="mailto:hello@onekreative.co">hello@onekreative.co</a></p>
+  </footer>
+
+  <script>
+    // FAQ toggle
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-a');
+      const isOpen = item.classList.contains('open');
+
+      // close all
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-a').style.maxHeight = '0';
+      });
+
+      // open clicked
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+
+    // Form submit via fetch (Formspree AJAX)
+    const form = document.getElementById('churchForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
